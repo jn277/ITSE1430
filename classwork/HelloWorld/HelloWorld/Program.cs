@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Donald Helaire
+ * ITSE 1430
+ * Lab 1
+ */
+using System;
 
 namespace HelloWorld
 {
@@ -8,11 +13,16 @@ namespace HelloWorld
         {
             Console.WriteLine("Hello World!");
 
-            int hours = 40;
-            double payRate = 12.80;
+            //Variable declaration:
+            //int hours;
 
-            double totalPay = hours * payRate;
+            int hours = 10;
 
+            //int pay;
+
+           int totalPay = hours * 9;
+
+            Console.WriteLine(totalPay);
         }
     }
 }
