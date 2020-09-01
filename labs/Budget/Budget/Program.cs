@@ -9,9 +9,30 @@ namespace Budget
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main ( string[] args )
         {
-            Console.WriteLine("Hello World!");
+            AccountName();
+            //AccountNumber();
+            //AccountBalance();
+
+            //Console.WriteLine("Hello World!");
         }
+
+        static void AccountName()
+        {
+            string accountName = "Enter the account nickname";
+            Console.WriteLine(accountName);
+            Console.ReadLine();
+        }
+
+        //static void AccountNumber()
+        //{
+
+        //}
+
+        //static void AccountBalance()
+        //{
+
+        //}
     }
 }
