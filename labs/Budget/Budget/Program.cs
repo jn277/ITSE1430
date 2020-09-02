@@ -14,16 +14,15 @@ namespace Budget
             AccountName();
             //AccountNumber();
             //AccountBalance();
-
-            //Console.WriteLine("Hello World!");
         }
 
         static void AccountName()
         {
-            string accountName = "Enter the account nickname";
-            Console.WriteLine(accountName);
+            //string accountName = "Enter the account nickname";
+            Console.WriteLine("Enter your account name:");
             Console.ReadLine();
         }
+                
 
         //static void AccountNumber()
         //{
