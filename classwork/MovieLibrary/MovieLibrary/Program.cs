@@ -17,7 +17,7 @@ namespace MovieLibrary
                 if (choice == 'Q')
                     return;
                  else if (choice == 'A')
-                    AddMenu();
+                    AddMovie();
             };
 
             string title = "";
@@ -62,7 +62,7 @@ namespace MovieLibrary
                 //Get input from user
                 string value = Console.ReadLine();
 
-                if (input == "Q")
+                if (value == "Q")
                     return 'Q';
                 else if (value == "A")
                     return 'A';
