@@ -14,7 +14,7 @@ namespace Budget
             while (true)
             {
                 string choice = DisplayMenu();
-                if (choice == "Q)uit")
+                if (choice == "y)es")
                     break;
                 //else if (choice == "Account Name")
                 else 
@@ -43,7 +43,10 @@ namespace Budget
                 //Get input from user
                 string value = Console.ReadLine();
 
-                //if (value == "Quit")
+                if (value == "y/es")
+                    return "Exiting";
+                else
+                    return value;
                     //return "Exiting..";
                 //else if (value == "Account Name")
                     //return 'A';
