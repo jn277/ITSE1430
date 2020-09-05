@@ -13,12 +13,14 @@ namespace Budget
         {
             while (true)
             {
-                string choice = DisplayMenu();
-                if (choice == "y)es")
+                
+                char choice = DisplayMenu();
+                if (choice == 'y')
+                    //AccountName();
+                return;
+                else if (choice == ' ')
                     break;
-                //else if (choice == "Account Name")
-                else 
-                    AccountName();
+
                 //else if (choice == "Account Number")
                 //AccountNumber();
                 //else if (choice == "Account Balance")
@@ -29,7 +31,7 @@ namespace Budget
             //AccountNumber();
             //AccountBalance();
         }
-        static string DisplayMenu ()
+        private static char DisplayMenu ()
         {
             // do S while (E);
             // block statement => { S* }
@@ -39,19 +41,20 @@ namespace Budget
                 //Console.WriteLine("Account Number");
                 //Console.WriteLine("Account Balance");
                 Console.WriteLine("-----------------");
-                Console.WriteLine("Quit?");
+                Console.WriteLine("Continue?");
+
                 //Get input from user
                 string value = Console.ReadLine();
 
-                if (value == "y/es")
-                    return "Exiting";
-                else
-                    return value;
-                    //return "Exiting..";
-                //else if (value == "Account Name")
-                    //return 'A';
+                if (value == "y")
+                    AccountName();
+                else if (value == "n")
+                    return ' ';
+                else if (value == " ")
+                    return ' ';
             }
             while (true);
+        
         }
         static void AccountName()
         {

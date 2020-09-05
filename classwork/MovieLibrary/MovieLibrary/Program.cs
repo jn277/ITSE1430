@@ -57,8 +57,8 @@ namespace MovieLibrary
             do
             {
                 Console.WriteLine("Movie Library");
-                 Console.WriteLine("-----------------");
-                 Console.WriteLine("Q)uit");
+                Console.WriteLine("-----------------");
+                Console.WriteLine("Q)uit");
                 //Get input from user
                 string value = Console.ReadLine();
 
