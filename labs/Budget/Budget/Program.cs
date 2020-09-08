@@ -13,23 +13,8 @@ namespace Budget
         {
             while (true)
             {
-                
                 char choice = DisplayMenu();
-                if (choice == 'y')
-                    //AccountName();
-                return;
-                else if (choice == ' ')
-                    break;
-
-                //else if (choice == "Account Number")
-                //AccountNumber();
-                //else if (choice == "Account Balance")
-                //AccountBalance();
-                //return;
             };
-            
-            //AccountNumber();
-            //AccountBalance();
         }
         private static char DisplayMenu ()
         {
@@ -37,34 +22,45 @@ namespace Budget
             // block statement => { S* }
             do
             {
-                Console.WriteLine("Account Name");
-                //Console.WriteLine("Account Number");
-                //Console.WriteLine("Account Balance");
+                Console.WriteLine("Account Name    = 1");
+                Console.WriteLine("Account Number  = 2");
+                Console.WriteLine("Account Balance = 3");
                 Console.WriteLine("-----------------");
-                Console.WriteLine("Continue?");
+                Console.WriteLine("Please enter a menu number");
 
                 //Get input from user
                 string value = Console.ReadLine();
 
-                if (value == "y")
+                switch(value)
+                {
+                    case "1":
                     AccountName();
-                else if (value == "n")
-                    return ' ';
-                else if (value == " ")
-                    return ' ';
+                    break;
+
+                    //case "2":
+                    //AccountNumber();
+                    //break;
+
+                    //case "3":
+                    //AccountBalance();
+                    //break;
+
+                    case " ":
+                    break;
+                }
             }
             while (true);
-        
+            
         }
-        static void AccountName()
+        private static string AccountName()
         {
             //string accountName = "Enter the account nickname";
             Console.WriteLine("Enter your account name:");
-            Console.ReadLine();
+            string name = Console.ReadLine();
+            Console.WriteLine("The account name entered is: " + name);
+            return name;
         }
 
-
-      
         //static void AccountNumber()
         //{
 
