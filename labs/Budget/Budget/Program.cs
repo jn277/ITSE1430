@@ -25,32 +25,46 @@ namespace Budget
                 Console.WriteLine("Account Name    = 1");
                 Console.WriteLine("Account Number  = 2");
                 Console.WriteLine("Account Balance = 3");
+                Console.WriteLine("Quit = q");
                 Console.WriteLine("-----------------");
-                Console.WriteLine("Please enter a menu number");
+                Console.WriteLine("Please enter a menu option.");
 
                 //Get input from user
                 string value = Console.ReadLine();
 
                 switch(value)
                 {
+                    case " ":
+                    DisplayError("Please enter a valid menu option");
+                    break;
+
                     case "1":
-                    AccountName();
+                        AccountName();
                     break;
 
                     //case "2":
-                    //AccountNumber();
+                        //AccountNumber();
                     //break;
 
                     //case "3":
-                    //AccountBalance();
+                        //AccountBalance();
                     //break;
 
-                    case " ":
+                    case "q":
                     break;
                 }
-            }
+            } 
             while (true);
             
+        }
+        private static void DisplayError ( string message )
+        {
+            //Console.BackgroundColor = ConsoleColor.Red;
+            //Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine(message);
+
+            //Console.ResetColor();
         }
         private static string AccountName()
         {
