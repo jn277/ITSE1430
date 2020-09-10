@@ -11,17 +11,18 @@ namespace Budget
     {
         static void Main ( string[] args )
         {
-            while (true)
-            {
-                char choice = DisplayMenu();
-            };
+            //while (true)
+            //{
+                string choice = DisplayMenu();
+            //}
         }
-        private static char DisplayMenu ()
+        private static string DisplayMenu ()
         {
             // do S while (E);
             // block statement => { S* }
-            do
-            {
+            //do
+            //while (true)
+            //{
                 Console.WriteLine("Account Name    = 1");
                 Console.WriteLine("Account Number  = 2");
                 Console.WriteLine("Account Balance = 3");
@@ -51,11 +52,12 @@ namespace Budget
                     //break;
 
                     case "q":
+                    Console.WriteLine(" ");
                     break;
-                }
-            } 
-            while (true);
-            
+                };
+            //}
+            //while (true);
+            return value;
         }
         private static void DisplayError ( string message )
         {
