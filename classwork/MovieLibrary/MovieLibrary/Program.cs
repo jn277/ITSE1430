@@ -13,132 +13,274 @@ namespace MovieLibrary
             // 0+ iterations, pre test condition
             while (true)
             {
-                char choice = DisplayMenu();
-                if (choice == 'Q')
-                    return;
-                 else if (choice == 'A')
-                    AddMovie();
+                //char choice = DisplayMenu();
+                //if (choice == 'Q')
+                //return;
+                //else if (choice == 'A')
+                //AddMovie();
+                switch (DisplayMenu())
+                {
+                    case 'Q': return;
+
+                    case 'A': AddMovie(); break;
+
+                    case 'V': ViewMovie(); break;
+                };
             };
 
-            string title = "";
-            string description = "";
-            string rating = "";
-            int duration;
+            static string title = "";
+            static string description = "";
+            static string rating = "";
+            static int duration;
+            static bool isClassic;
         }
 
-     static void AddMovie ()
-            {
-              //Get title
+        static void AddMovie ()
+        {
+            //Get title
             Console.WriteLine("Movie title: ");
-            string title = Console.ReadLine();
+            //string title = Console.ReadLine();
+            //string title = ReadString(true);
+            //int title2 = "";
+            title = ReadString(true);  //string title = ReadString(true);
 
             //Get description
-            Console.WriteLine("Description (optional):  ");
+            Console.WriteLine("Description (optional): ");
+            //string description = Console.ReadLine();
+            //string description = ReadString(false);
+            description = ReadString(false);
 
-            string description = ReadString(false);
 
             //Get rating
             Console.WriteLine("Rating: ");
-            string rating = Console.ReadLine();
+            //string rating = Console.ReadLine();
+            //string rating = ReadString(false);
+            rating = ReadString(false);
 
             //Get duration
             Console.WriteLine("Duration (in minutes): ");
-            string duration = Console.ReadLine();
+            //string duration = Console.ReadLine();
+            //int duration = ReadInt32(0);
+            duration = ReadInt32(0);
 
             //Get is classic
             Console.WriteLine("Is Classic (Y/N)? ");
-            string isClassic = Console.ReadLine();
-            }
+            //string isClassic = Console.ReadLine();
+            //bool isClassic = ReadBoolean();
+            isClassic = ReadBoolean();
+        }
 
-     static char DisplayMenu()
+
+        static char DisplayMenu ()
         {
+            // 1+ iteration, post test
             // do S while (E);
             // block statement => { S* }
             do
             {
                 Console.WriteLine("Movie Library");
                 Console.WriteLine("-----------------");
+                Console.WriteLine("V)iew Movie");
+                Console.WriteLine("A)dd Movie");
                 Console.WriteLine("Q)uit");
+
                 //Get input from user
                 string value = Console.ReadLine();
 
-                if (value == "Q")
+                //C++: if (x = 10) ; //Not valid in C#
+                // if (E) S;
+                // if (E) S else S;
+                if (value == "Q")   // 2 equal signs => equality 
                     return 'Q';
                 else if (value == "A")
                     return 'A';
+                else if (value == "V")
+                    return 'V';
 
-                DisplayError();
-            }
-            while (true);
+                DisplayError("Invalid option");
+            } while (true);
         }
-     private static void DisplayError (string message)
-         {
+
+        //Displays an error
+        private static void DisplayError ( string message )
+        {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine(message);
 
             Console.ResetColor();
-         }
+        }
 
-      static int ReadInt32 (int minimumValue )
+        static bool ReadBoolean ()
         {
             do
             {
-                string value = Console.Readline();
+                //Read as string
+                string value = Console.ReadLine();
+
+                // switch - replacement for if-else-if WHEN
+                //  Each condition is against same variable
+                //  AND equality
+                // switch (E)
+                // {
+                //    case*
+                //    [default]
+                // }
+                // case    ::= case E : S*
+                // default ::= default : S*
+
+                //if (value == "Y" || value == "y")  //NOT THE SAME ::=   value == "Y" || "y"
+                //    return true;
+                //else if (value == "N" || value == "n")
+
+                //Boolean.TryParse(value, out bool result)           
+                //if (value == "Y")
+                //return true;
+                //else if (value == "N")
+                // return false;
+                //else
+                //    S;
+                // C++ DIFFERENCES
+                //   1. No fallthrough  case E: S; break; case E2 : S;
+                //   2. Any expression type is allowed
+                //   3. Case labels must be unique and compile time constants
+                //   4. Multiple statements are allowed
+                switch (value)
+                {
+                    case "X": Console.WriteLine("Wrong value"); break;
+                    case "Y":                   //If case statement empty (including semicolon) then fallthrough
+                    case "y": return true;
+
+                    case "N": return false;
+
+                    case "A":
+                    {
+                        //Use block statement for more than 1 statement
+                        Console.WriteLine("Wrong value");
+                        Console.WriteLine("Wrong value again");
+                        break;
+                    };
+
+                    default:
+                    break;//if nothing else
+
+                };
+                    DisplayError("Invalid option");
+            } while (true);
+        }
+
+        //Reads an integer
+        static int ReadInt32 ()
+        {
+            return ReadInt32(Int32.MinValue);
+        }
+
+        //Reads an integer with a minimum value
+        static int ReadInt32 ( int minimumValue )
+        {
+            do
+            {
+                string value = Console.ReadLine();
+
                 //Parse to int int Int32.Parse ( string ) - not safe
                 //int result = Int32.Parse(value);
 
                 // Parameter kinds
                 //   Input parameter ("pass by value") - a copy of the argument is placed into parameter inside function definition
-                //   Input parameter ("pass by reference") - a reference to the argument is passed to the function and both the original argument and parameter reference the same value (C++; int&).
-                //   Output parameter Function caller does not provide input, function always provide output (C++ return type).
+                //   Input/output parameter ("pass by reference") - a reference to the argument is passed to the function and both original argument and parameter reference same value ( C++: int& )
+                //   Output paramter - function caller does not provide input, function always provides output (C++: return type)
                 //bool Int32.TryParse ( string, out int result )
-                int result;
-                if (Int32.TryParse(value, out result)) && result >= minimumValue
+                // Double.Parse/TryParse
+                // Single.Parse/TryParse
+                // Boolean.Parse/TryParse 
+                // Int16.Parse/TryParse
+
+                //Inline variable declaration - out parameters only
+                //int result;
+                //if (Int32.TryParse(value, out int result) && result >= minimumValue)
+                //return result;
+                if (Int32.TryParse(value, out var result) && result >= minimumValue)
                     return result;
-                if (minimumValue)
-                    DisplayError("Value must be at least " + minimumValue);
+
+                //Terminates the loop
+                //break;
+                //Terminate the iteration 
+                //continue;
+
+                if (minimumValue != Int32.MinValue)   //Int32.MaxValue
+                    DisplayError("Value must be at least " + minimumValue);  //String concatenation
                 else
                     DisplayError("Must be integral value");
             } while (true);
         }
+            static void ViewMovie ()
+            {
+                Console.WriteLine(title);
 
-      //Logical operators (booleans)
-      // NOT => !E
-      // AND =>
-      // OR => E || E
+                //TODO: Description if available
+                Console.WriteLine(" " + description);
 
-      //Relational operators
-      // equality => E == E
-     //Logical operators 
-     // NOT => !E
-     static string ReadString ( bool required )
-     {
-        do
+                //TODO: If available
+                Console.WriteLine(" " + rating);
+
+                Console.WriteLine(duration);
+
+                Console.WriteLine(isClassic);
+            }
+        
+
+        //Arithmetic (unary) 
+        //  +E
+        //  -E 
+        //Arithmetic (binary) - type coercion
+        // addition 10 + 12   
+        // subtraction 123 - 110.4
+        // multiplication 10 * 20
+        // division 30 / 3 
+        // modulus 7 % 4 => 3 (remainder), only works with integrals
+
+        //int division problem
+        //  10 / 3 => int / int => int  = 3
+        //  10.0 / 3 => double / int => double = 3.33
+        //  (double)10 / 3 => double /int 
+
+        // typecast => (T)E
+        //not allowed => (string)10 , (int)"Hello",  (int)10.5
+
+        //Logical operators (booleans)
+        // NOT => !E : boolean
+        // AND => E && E : boolean
+        // OR => E || E : boolean
+
+        //Relational operators (primitives + a few extra)
+        // equality => E == E
+        // inequality => E != E
+        // greater than => E > E
+        // greater than or equal to => E >= E
+        // less than => E < E
+        // less than or equal to => E <= E
+        //Reads a string, optionally required
+        static string ReadString ( bool required )
+        {
+            do
             {
                 string value = Console.ReadLine();
+
                 //If not required or not empty return
                 if (!required || value != "")
                     return value;
 
-                    DisplayError("Value is required");
+                DisplayError("Value is required");
             } while (true);
-     }
-        
-            //private static void FunWithVariables()
-    /*{
-        int hours = 10;
-        int value;
-        value = 10;
-        int calculatedValue = value * 10;
-    }
-     static void FunWithTypes()
+        }
+
+        static void FunWithStrings()
         {
-            bool isPassing = true;
-            char letterA = 'A';
-            string name = "Bob";
-        */
+            // \n new line
+            // \t tab
+            var message = "Hello\nWorld";
+        }
     }
 
 }
