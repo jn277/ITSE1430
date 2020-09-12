@@ -11,18 +11,28 @@ namespace Budget
     {
         static void Main ( string[] args )
         {
-            //while (true)
-            //{
-                string choice = DisplayMenu();
-            //}
+            while (true)
+            {
+               switch (DisplayMenu())
+                {
+                    case "q": return;
+
+                    case "1": AccountName(); break;
+
+                    //case "2": AccountNumber(); break;
+
+                    //case "3": AccountBalance(); break;
+                };
+            }
+            
         }
         private static string DisplayMenu ()
         {
             // do S while (E);
             // block statement => { S* }
-            //do
+            do
             //while (true)
-            //{
+            {
                 Console.WriteLine("Account Name    = 1");
                 Console.WriteLine("Account Number  = 2");
                 Console.WriteLine("Account Balance = 3");
@@ -33,31 +43,17 @@ namespace Budget
                 //Get input from user
                 string value = Console.ReadLine();
 
-                switch(value)
-                {
-                    case " ":
-                    DisplayError("Please enter a valid menu option");
-                    break;
-
-                    case "1":
-                        AccountName();
-                    break;
-
-                    //case "2":
-                        //AccountNumber();
-                    //break;
-
-                    //case "3":
-                        //AccountBalance();
-                    //break;
-
-                    case "q":
-                    Console.WriteLine(" ");
-                    break;
-                };
-            //}
-            //while (true);
-            return value;
+                if (value ==  "q")
+                    return "q";
+                else if (value == "1")
+                    return "1";
+                //else if (value == "2")
+                    //return "2";
+                //else if (value == "3")
+                    //return "3";
+                DisplayError("Invalid option");
+            } while (true);
+            
         }
         private static void DisplayError ( string message )
         {
