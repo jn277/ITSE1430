@@ -19,19 +19,16 @@ namespace Budget
 
                     case "1": AccountName(); break;
 
-                    //case "2": AccountNumber(); break;
+                    case "2": AccountNumber(); break;
 
-                    //case "3": AccountBalance(); break;
+                    case "3": AccountBalance(); break;
                 };
             }
             
         }
         private static string DisplayMenu ()
         {
-            // do S while (E);
-            // block statement => { S* }
             do
-            //while (true)
             {
                 Console.WriteLine("Account Name    = 1");
                 Console.WriteLine("Account Number  = 2");
@@ -47,10 +44,10 @@ namespace Budget
                     return "q";
                 else if (value == "1")
                     return "1";
-                //else if (value == "2")
-                    //return "2";
-                //else if (value == "3")
-                    //return "3";
+                else if (value == "2")
+                    return "2";
+                else if (value == "3")
+                    return "3";
                 DisplayError("Invalid option");
             } while (true);
             
@@ -66,21 +63,26 @@ namespace Budget
         }
         private static string AccountName()
         {
-            //string accountName = "Enter the account nickname";
             Console.WriteLine("Enter your account name:");
             string name = Console.ReadLine();
             Console.WriteLine("The account name entered is: " + name);
             return name;
         }
 
-        //static void AccountNumber()
-        //{
+        private static string AccountNumber()
+        {
+            Console.WriteLine("Enter your account number:");
+            string number = Console.ReadLine();
+            Console.WriteLine("The account number entered is: " + number);
+            return number;
+        }
 
-        //}
-
-        //static void AccountBalance()
-        //{
-
-        //}
+        private static string AccountBalance()
+        {
+            Console.WriteLine("Enter your account balance:");
+            string balance = Console.ReadLine();
+            Console.WriteLine("The account balance entered is: " + balance);
+            return balance;
+        }
     }
 }
