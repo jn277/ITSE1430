@@ -40,13 +40,14 @@ namespace Budget
                 //Get input from user
                 string value = Console.ReadLine();
 
-                if (value ==  "q")
+                //if (value ==  "q")
+                if (String.Compare(value, "q", true) == 0)
                     return "q";
-                else if (value == "1")
+                else if (String.Compare(value, "1", true) == 0)
                     return "1";
-                else if (value == "2")
+                else if (String.Compare(value, "2", true) == 0)
                     return "2";
-                else if (value == "3")
+                else if (String.Compare(value, "3", true) == 0)
                     return "3";
                 DisplayError("Invalid option");
             } while (true);
