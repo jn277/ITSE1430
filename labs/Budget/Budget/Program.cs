@@ -64,9 +64,14 @@ namespace Budget
         }
         private static string AccountName()
         {
-            Console.WriteLine("Enter your account name:");
-            string name = Console.ReadLine();
-            Console.WriteLine("The account name entered is: " + name);
+                Console.WriteLine("Enter your account name:");
+                string name = Console.ReadLine();
+                //if (!String.IsNullOrEmpty(name))
+                    //Console.WriteLine("The account name entered is: " + name);
+                    //Console.WriteLine("Invalid account name entered");
+                //else
+                    //Console.WriteLine("Invalid account name entered");
+                    Console.WriteLine("The account name entered is: " + name);
             return name;
         }
 
@@ -74,6 +79,7 @@ namespace Budget
         {
             Console.WriteLine("Enter your account number:");
             string number = Console.ReadLine();
+            //int accountNumber = Int32.Parse(number);
             Console.WriteLine("The account number entered is: " + number);
             return number;
         }
