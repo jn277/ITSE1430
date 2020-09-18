@@ -62,24 +62,24 @@ namespace Budget
 
             //Console.ResetColor();
         }
-        private static void AccountName()
+        private static string AccountName()
         {
-                Console.WriteLine("Enter your account name:");
-                string name = Console.ReadLine();
+            Console.WriteLine("Enter your account name:");
+            string name = Console.ReadLine();
+            checkNullName(name);
+            return name;
+
+            static void checkNullName ( string name )
+            {
                 if (!String.IsNullOrEmpty(name))
-                    {
-                        Console.WriteLine("Invalid account name entered");
-                        //Console.WriteLine("Enter the account name or press q to quit");
-                    }
-                    //Console.WriteLine("The account name entered is: " + name);
-                    //Console.WriteLine("Invalid account name entered");
+                {
+                    Console.WriteLine("The account name entered is: " + name);
+                }
                 else
-            //Console.WriteLine("Invalid account name entered");
-                    {
-                        Console.WriteLine("The account name entered is: " + name);
-                    }
-                    
-            //return name;
+                {
+                    Console.WriteLine("Invalid account name entered");
+                }
+            }
         }
 
         private static string AccountNumber()
