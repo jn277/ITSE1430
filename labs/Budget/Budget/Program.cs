@@ -35,7 +35,7 @@ namespace Budget
                 Console.WriteLine("Account Balance = 3");
                 Console.WriteLine("Quit = q");
                 Console.WriteLine("-----------------");
-                Console.WriteLine("Please enter a menu option.");
+                Console.WriteLine("Please enter a menu option, or press q to quit.");
 
                 //Get input from user
                 string value = Console.ReadLine();
@@ -62,24 +62,25 @@ namespace Budget
 
             //Console.ResetColor();
         }
-        private static string AccountName()
+         private static string AccountName()
         {
             Console.WriteLine("Enter your account name:");
             string name = Console.ReadLine();
-            checkNullName(name);
-            return name;
+            //checkNullName(name);
+            //return name;
 
-            static void checkNullName ( string name )
-            {
-                if (!String.IsNullOrEmpty(name))
-                {
-                    Console.WriteLine("The account name entered is: " + name);
-                }
-                else
-                {
-                    Console.WriteLine("Invalid account name entered");
-                }
-            }
+            //static void checkNullName ( string name )
+
+            if (String.IsNullOrEmpty(name))
+                return ("Invalid account name entered");
+            //Console.WriteLine("Invalid account name entered" );
+
+            else
+                Console.WriteLine("The account name entered is: " + name);
+                return name;
+            //Console.WriteLine("Invalid account name entered");
+
+            //return name;
         }
 
         private static string AccountNumber()
