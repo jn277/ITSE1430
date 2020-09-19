@@ -40,15 +40,14 @@ namespace Budget
                 //Get input from user
                 string value = Console.ReadLine();
 
-                //if (value ==  "q")
-                if (String.Compare(value, "q", true) == 0)
-                    return "q";
-                else if (String.Compare(value, "1", true) == 0)
+                if (String.Compare(value, "1", true) == 0)
                     return "1";
                 else if (String.Compare(value, "2", true) == 0)
                     return "2";
                 else if (String.Compare(value, "3", true) == 0)
                     return "3";
+                else if (String.Compare(value, "q", true) == 0)
+                    return "q";
                 DisplayError("Invalid option");
             } while (true);
             
@@ -66,29 +65,25 @@ namespace Budget
         {
             Console.WriteLine("Enter your account name:");
             string name = Console.ReadLine();
-            //checkNullName(name);
-            //return name;
-
-            //static void checkNullName ( string name )
 
             if (String.IsNullOrEmpty(name))
-                return ("Invalid account name entered");
-            //Console.WriteLine("Invalid account name entered" );
-
+                Console.WriteLine("Invalid account name entered" );
             else
                 Console.WriteLine("The account name entered is: " + name);
-                return name;
-            //Console.WriteLine("Invalid account name entered");
 
-            //return name;
+            return name;
         }
 
         private static string AccountNumber()
         {
             Console.WriteLine("Enter your account number:");
             string number = Console.ReadLine();
-            //int accountNumber = Int32.Parse(number);
-            Console.WriteLine("The account number entered is: " + number);
+            int accountNumber = Int32.Parse(number);
+
+            if (accountNumber == 0)
+                Console.WriteLine("Invalid account number entered");
+            else
+                Console.WriteLine("The account number entered is: " + number);
             return number;
         }
 
@@ -96,7 +91,12 @@ namespace Budget
         {
             Console.WriteLine("Enter your account balance:");
             string balance = Console.ReadLine();
-            Console.WriteLine("The account balance entered is: " + balance);
+            double accountBalance = Double.Parse(balance);
+
+            if (accountBalance == 0)
+                Console.WriteLine("Invalid account balance entered");
+            else
+                Console.WriteLine("The account balance entered is: " + balance);
             return balance;
         }
     }
