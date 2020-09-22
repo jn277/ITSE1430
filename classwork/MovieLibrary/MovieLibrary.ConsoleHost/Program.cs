@@ -237,7 +237,7 @@ namespace MovieLibrary
             //   A: Somewhat readable
             //   D: Harder to read as it gets longer
             //   D: Bad performance
-            //var message = title + "\t" + rating + "\t" + duration + "\t" + isClassic;
+            var message = title + "\t" + rating + "\t" + duration + "\t" + isClassic;
             Console.WriteLine(message);
 
             //4. String builder
