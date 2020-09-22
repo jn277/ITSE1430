@@ -63,41 +63,50 @@ namespace Budget
         }
          private static string AccountName()
         {
-            Console.WriteLine("Enter your account name:");
-            string name = Console.ReadLine();
-
-            if (String.IsNullOrEmpty(name))
-                Console.WriteLine("Invalid account name entered" );
-            else
-                Console.WriteLine("The account name entered is: " + name);
-
-            return name;
+            do
+            {
+                Console.WriteLine("Enter your account name:");
+                string name = Console.ReadLine();
+            
+                if (String.IsNullOrEmpty(name))
+                    Console.WriteLine("Invalid account name entered.");
+                else
+                    Console.WriteLine("The account name entered is: " + name);
+                return name;
+            } while (true);
         }
 
         private static string AccountNumber()
         {
-            Console.WriteLine("Enter your account number:");
-            string number = Console.ReadLine();
-            int accountNumber = Int32.Parse(number);
+            do
+            {
+                Console.WriteLine("Enter your account number:");
+                string number = Console.ReadLine();
+                int accountNumber = Int32.Parse(number);
 
-            if (accountNumber == 0)
-                Console.WriteLine("Invalid account number entered");
-            else
-                Console.WriteLine("The account number entered is: " + number);
-            return number;
+                if (accountNumber == 0)
+                    //if (number.Length < 6)
+                    Console.WriteLine("Invalid account number entered.");
+                else
+                    Console.WriteLine("The account number entered is: " + accountNumber);
+                return number;
+            } while (true);
         }
 
         private static string AccountBalance()
         {
-            Console.WriteLine("Enter your account balance:");
-            string balance = Console.ReadLine();
-            double accountBalance = Double.Parse(balance);
+            do
+            {
+                Console.WriteLine("Enter your account balance:");
+                string balance = Console.ReadLine();
+                double accountBalance = Double.Parse(balance);
 
-            if (accountBalance == 0)
-                Console.WriteLine("Invalid account balance entered");
-            else
-                Console.WriteLine("The account balance entered is: " + balance);
-            return balance;
+                if (accountBalance <= 0)
+                    Console.WriteLine("Invalid account balance entered.");
+                else
+                    Console.WriteLine("The account balance entered is: " + balance);
+                return balance;
+            } while (true);
         }
     }
 }
