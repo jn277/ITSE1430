@@ -29,45 +29,45 @@ namespace MovieLibrary
                 };
             };
 
-            static string title = "";
-            static string description = "";
-            static string rating = "";
-            static int duration;
-            static bool isClassic;
+            //static string title = "";
+            //static string description = "";
+            //static string rating = "";
+            //static int duration;
+            //static bool isClassic;
         }
 
         static void AddMovie ()
         {
             //Get title
             Console.WriteLine("Movie title: ");
-            //string title = Console.ReadLine();
+            string title = Console.ReadLine();
             //string title = ReadString(true);
             //int title2 = "";
             title = ReadString(true);  //string title = ReadString(true);
 
             //Get description
             Console.WriteLine("Description (optional): ");
-            //string description = Console.ReadLine();
+            string description = Console.ReadLine();
             //string description = ReadString(false);
             description = ReadString(false);
 
 
             //Get rating
             Console.WriteLine("Rating: ");
-            //string rating = Console.ReadLine();
+            string rating = Console.ReadLine();
             //string rating = ReadString(false);
             rating = ReadString(false);
 
             //Get duration
             Console.WriteLine("Duration (in minutes): ");
             //string duration = Console.ReadLine();
-            //int duration = ReadInt32(0);
+            int duration = ReadInt32(0);
             duration = ReadInt32(0);
 
             //Get is classic
             Console.WriteLine("Is Classic (Y/N)? ");
             //string isClassic = Console.ReadLine();
-            //bool isClassic = ReadBoolean();
+            bool isClassic = ReadBoolean();
             isClassic = ReadBoolean();
         }
 
@@ -221,7 +221,7 @@ namespace MovieLibrary
             {
                 Console.WriteLine("Title\t\tRating\tDuration (in mins)\tIsClassic");
                 //Console.WriteLine("-----------------");
-                Console.WriteLine("".PadLeft(50, '-');
+                Console.WriteLine("".PadLeft(50, '-'));
             //1. Format arguments
             // Format string - consists of string characters with arguments specified in curly braces as zero-based ordinals
             // 1. Readable but not great
@@ -237,7 +237,7 @@ namespace MovieLibrary
             //   A: Somewhat readable
             //   D: Harder to read as it gets longer
             //   D: Bad performance
-            var message = title + "\t" + rating + "\t" + duration + "\t" + isClassic;
+            //var message = title + "\t" + rating + "\t" + duration + "\t" + isClassic;
             Console.WriteLine(message);
 
             //4. String builder
@@ -438,7 +438,7 @@ namespace MovieLibrary
             // StartsWith / EndsWith
 
             var leftPath = @"C:\temp";
-            var rightPath = "folderA\file.txt"
+            var rightPath = "folderA\file.txt";
 
             var endsWithSlash = leftPath.EndsWith(@"\");
             var startsWithSlash = rightPath.StartsWith(@"\");
