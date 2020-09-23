@@ -15,13 +15,13 @@ namespace Budget
             {
                switch (DisplayMenu())
                 {
-                    case "q": return;
-
                     case "1": AccountName(); break;
 
                     case "2": AccountNumber(); break;
 
                     case "3": AccountBalance(); break;
+
+                    case "q": Quit(); break;
                 };
             }
             
@@ -106,6 +106,21 @@ namespace Budget
                 else
                     Console.WriteLine("The account balance entered is: " + balance);
                 return balance;
+            } while (true);
+        }
+
+        private static void Quit ( )
+        {
+            do
+            {
+                Console.WriteLine("Do you want to exit? Enter y or n");
+                string answer = Console.ReadLine();
+                if (answer == "n")
+                    //Console.WriteLine("Please enter a menu option, or press q to quit.");
+                    DisplayMenu();
+                else
+                if (answer == "y")
+                    break;
             } while (true);
         }
     }
