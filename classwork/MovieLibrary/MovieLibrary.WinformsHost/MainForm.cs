@@ -29,9 +29,21 @@ namespace MovieLibrary.WinformsHost
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        public MainForm ()
         {
             InitializeComponent();
+            // Type = Movie
+            // Variable = movie
+            // Value = instance or an objecteLibrary 0
+
+            Movie movie;
+            movie = new Movie();   //Create an instance ::=  new T()
+
+            //var movie2 = new Movie();  //New instance
+
+            //member access operator ::=   E . M
+            movie.Name = "Bond";
+            //var str = movie.description;
         }
 
     }
