@@ -7,7 +7,7 @@ using System;
 
 namespace Budget
 {
-    class Program
+    public class Program
     {
         static void Main ( string[] args )
         {
@@ -21,6 +21,8 @@ namespace Budget
 
                     case "3": AccountBalance(); break;
 
+                    case "4": AddMoney(); break;
+
                     case "q": Quit(); break;
                 };
             }
@@ -33,8 +35,9 @@ namespace Budget
                 Console.WriteLine("Account Name    = 1");
                 Console.WriteLine("Account Number  = 2");
                 Console.WriteLine("Account Balance = 3");
-                Console.WriteLine("Quit = q");
-                Console.WriteLine("-----------------");
+                Console.WriteLine("Add Money       = 4");
+                Console.WriteLine("Quit            = q");
+                Console.WriteLine("-------------------");
                 Console.WriteLine("Please enter a menu option, or press q to quit.");
 
                 //Get input from user
@@ -46,6 +49,8 @@ namespace Budget
                     return "2";
                 else if (String.Compare(value, "3", true) == 0)
                     return "3";
+                else if (String.Compare(value, "4", true) == 0)
+                    return "4";
                 else if (String.Compare(value, "q", true) == 0)
                     return "q";
                 DisplayError("Invalid option");
@@ -54,12 +59,7 @@ namespace Budget
         }
         private static void DisplayError ( string message )
         {
-            //Console.BackgroundColor = ConsoleColor.Red;
-            //Console.ForegroundColor = ConsoleColor.White;
-
             Console.WriteLine(message);
-
-            //Console.ResetColor();
         }
          private static string AccountName()
         {
@@ -75,7 +75,6 @@ namespace Budget
                 return name;
             } while (true);
         }
-
         private static string AccountNumber()
         {
             do
@@ -92,7 +91,6 @@ namespace Budget
                 return number;
             } while (true);
         }
-
         private static string AccountBalance()
         {
             do
@@ -109,19 +107,42 @@ namespace Budget
             } while (true);
         }
 
-        private static void Quit ( )
+        private static double AddMoney ()
+        {
+            do
+            {
+                Console.WriteLine("Enter amount to deposit:");
+                string depositAmount = Console.ReadLine();
+                double depositBalance = Double.Parse(depositAmount);
+
+                Console.WriteLine("Enter description of deposit:");
+                string depositDescription = Console.ReadLine();
+
+                Console.WriteLine("Enter date of deposit:");
+                DateTime dateOfDeposit = new DateTime(2020,1,1);
+                Console.ReadLine();
+
+                Console.WriteLine("The amount deposited is: " + depositBalance);
+                Console.WriteLine("The deposit description is: " + depositDescription);
+                Console.WriteLine("The deposited date is: " + dateOfDeposit);
+                return depositBalance;
+            } while (true);
+        }
+        private static string Quit ( )
         {
             do
             {
                 Console.WriteLine("Do you want to exit? Enter y or n");
                 string answer = Console.ReadLine();
+
                 if (answer == "n")
-                    //Console.WriteLine("Please enter a menu option, or press q to quit.");
-                    DisplayMenu();
+                    return answer;
                 else
                 if (answer == "y")
-                    break;
-            } while (true);
+                    Console.WriteLine("Press enter to terminate.");
+                    Console.Read();
+                    Environment.Exit(0);
+             } while (true);
         }
     }
 }
