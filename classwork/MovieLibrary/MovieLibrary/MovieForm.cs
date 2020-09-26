@@ -46,14 +46,8 @@ namespace MovieLibrary.WinformsHost
             //member access operator ::=   E . M
             movie.Name = "Bond";
             //var str = movie.description;
+        }
 
-            toolStripMenuItem5.Click += OnMovieAdd;
-        }
-        private void OnMovieAdd(Object sender, EventArgs e)
-        {
-            var form = new MovieForm();
-            form.ShowDialog();
-        }
     }
 }
 
