@@ -12,7 +12,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 
 //Hierarchical namesapces
 //namespace MovieLibrary
@@ -25,11 +25,11 @@ using System.Windows.Forms;
 //namespace Microsoft.Office.Word
 //namespace Microsoft.Office.Excel
 
-namespace MovieLibrary.WinformsHost
+namespace MovieLibrary
 {
-    public partial class MainForm : Form
+    public partial class MovieForm : Form
     {
-        public MainForm ()
+        public MovieForm ()
         {
             InitializeComponent();
             // Type = Movie
