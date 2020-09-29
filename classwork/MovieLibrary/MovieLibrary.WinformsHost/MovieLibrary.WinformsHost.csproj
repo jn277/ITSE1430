@@ -10,4 +10,10 @@
     <ProjectReference Include="..\MovieLibrary\MovieLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="MovieForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
