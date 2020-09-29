@@ -19,10 +19,10 @@ namespace MovieLibrary.WinformsHost
 {
     public partial class MovieForm : Form
     {
-        public MovieForm ()
-        {
-            InitializeComponent();
-        }
+        //public MovieForm ()
+        //{
+            //InitializeComponent();
+        //}
 
         //Method - function inside a class
         private void OnCancel ( object sender, EventArgs e )
@@ -33,13 +33,13 @@ namespace MovieLibrary.WinformsHost
         private void OnSave ( object sender, EventArgs e )
         {
             var movie = new Movie();
-            movie.Name = _txtName.Text;
-            movie.Description = _txtDescription.Text;
-            movie.Rating = _comboRating.SelectedText;
-            movie.IsClassic = _chkClassic.Checked;
+            //movie.Name = _txtName.Text;
+            //movie.Description = _txtDescription.Text;
+            //movie.Rating = _comboRating.SelectedText;
+            //movie.IsClassic = _chkClassic.Checked;
 
-            movie.RunLength = ReadAsInt32(_txtRunLength);  //this.ReadAsInt32
-            movie.ReleaseYear = ReadAsInt32(_txtReleaseYear);
+            //movie.RunLength = ReadAsInt32(_txtRunLength);  //this.ReadAsInt32
+            //movie.ReleaseYear = ReadAsInt32(_txtReleaseYear);
 
             //TODO: Fix validation
             var error = movie.Validate();
