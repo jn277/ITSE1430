@@ -29,9 +29,20 @@ namespace MovieLibrary.WinformsHost
         {
             Close();
         }
-
+        //Event handler - handles an event
+        //  This method is handling the button's Click event
+        //     void identifier ( object sender, EventArgs e )
         private void OnSave ( object sender, EventArgs e )
         {
+            // I want the button that was clicked
+            //Type casting
+            // WRONG: var button = (Button)sender;  // C-style cast - crashes if wrong
+            //var str = (string)10;
+            // CORRECT: var button = sender as Button;  // as operator - always safe
+            var button = sender as Button;
+            if (button == null)
+                return;
+
             var movie = new Movie();
             movie.Name = _txtName.Text;
             movie.Description = _txtDescription.Text;
@@ -40,6 +51,11 @@ namespace MovieLibrary.WinformsHost
 
             movie.RunLength = ReadAsInt32(_txtRunLength);  //this.ReadAsInt32
             movie.ReleaseYear = ReadAsInt32(_txtReleaseYear);
+
+            //Using a constant
+            //  1. Type name, not instance
+            var nameLength = Movie.MaximumNameLength; //50
+            //var nameLength1 = 50;
 
             //TODO: Fix validation
             var error = movie.Validate();
