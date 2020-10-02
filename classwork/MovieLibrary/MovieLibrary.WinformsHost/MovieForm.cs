@@ -51,21 +51,17 @@ namespace MovieLibrary.WinformsHost
 
             movie.RunLength = ReadAsInt32(_txtRunLength);  //this.ReadAsInt32
             movie.ReleaseYear = ReadAsInt32(_txtReleaseYear);
-
-            //Using a constant
-            //  1. Type name, not instance
-            var nameLength = Movie.MaximumNameLength; //50
             //var nameLength1 = 50;
 
             //TODO: Fix validation
-            var error = movie.Validate();
-            if (!String.IsNullOrEmpty(error))
-            {
+            //var error = movie.Validate();
+            //if (!String.IsNullOrEmpty(error))
+            //{
                 //Show error message - use for standard messages
-                MessageBox.Show(this, error, "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DialogResult = DialogResult.None;
-                return;
-            };
+                //MessageBox.Show(this, error, "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //DialogResult = DialogResult.None;
+                //return;
+            //};
             Close();
             //TODO: Return movie
 

@@ -5,6 +5,7 @@
  */
 
 using System;
+//using System.Windows.Forms;
 
 namespace MovieLibrary
 {
@@ -87,7 +88,7 @@ namespace MovieLibrary
                 //else return E2
                 //return _name;
                 return _name ?? "";
-            }
+                }
 
             //setter: void set_Name ( T value )
             set {
@@ -132,24 +133,23 @@ namespace MovieLibrary
 
     /// <summary>Validates the movie instance.</summary>
     /// <returns>The error message, if any.</returns>
-    public string Validate ( /*Movie this */ )
-        {
-
+    //public string Validate ( )
+        //{
             //Name is required
-            if (String.IsNullOrEmpty(Name)) //this.Name
-                return "Name is required";
+            //if (String.IsNullOrEmpty(Name)) //this.Name
+                //return "Name is required";
 
-            //Run length must be >= 0
-            if (RunLength < 0)
-                return "Run Length must be greater than or equal to 0";
+        //Run length must be >= 0
+            //if (RunLength < 0)
+                //return "Run Length must be greater than or equal to 0";
 
             //Release Year must be >= 1900
-            if (ReleaseYear < 1900)
-                return "Release Year must be at least 1900";
+            //if (ReleaseYear < 1900)
+                //return "Release Year must be at least 1900";
 
-            return null;
-        }
+            //return null;
+        //}
     }
 
-}
+
 
