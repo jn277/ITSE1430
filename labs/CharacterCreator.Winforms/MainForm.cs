@@ -16,6 +16,7 @@ namespace CharacterCreator.Winforms
         {
             InitializeComponent();
 
+            //toolStripMenuItem2 = Close();
             Close();
         }
         
