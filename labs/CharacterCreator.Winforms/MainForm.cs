@@ -16,9 +16,20 @@ namespace CharacterCreator.Winforms
         {
             InitializeComponent();
 
-            //toolStripMenuItem2.Click += Close();
-            //Close();
+            //toolStripMenuItem2.Click += OnFileExit;
+            //toolStripMenuItem4.Click += OnHelpAoout;
         }
         
     }
+
+    //private void OnFileExit(object sender, EventArgs e)
+    //{
+        //var form = new MainForm();
+
+        //var result = form.ShowDialog(this);
+        //if(result == DialogResult.Cancel)
+            //return;
+        //MessageBox.Show("Exiting the menu.");
+        
+    //}
 }
