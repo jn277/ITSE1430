@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CharacterCreator.Winforms
 {
-    static class Program
+    public static class Program
     {
     /// <summary>
     /// The main entry point for the application.
@@ -17,10 +17,11 @@ namespace CharacterCreator.Winforms
             while (true)
             {
 
-                //Application.EnableVisualStyles();
-                //Application.SetCompatibleTextRenderingDefault(false);
-                //Application.Run(new MainForm());
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new MainForm());
             };
+            
         }
     }
 }
