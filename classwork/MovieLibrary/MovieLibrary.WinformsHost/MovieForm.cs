@@ -64,7 +64,7 @@ namespace MovieLibrary.WinformsHost
                 _txtName.Text = Movie.Name;
                 _txtDescription.Text = Movie.Description;
                 _comboRating.SelectedText = Movie.Rating;
-                _chkClassic.Checked = Movie.IsClassic;
+                _chkIsClassic.Checked = Movie.IsClassic;
                 _txtRunLength.Text = Movie.RunLength.ToString();
                 _txtReleaseYear.Text = Movie.ReleaseYear.ToString();
             };
@@ -94,7 +94,7 @@ namespace MovieLibrary.WinformsHost
             movie.Name = _txtName.Text;
             movie.Description = _txtDescription.Text;
             movie.Rating = _comboRating.SelectedText;
-            movie.IsClassic = _chkClassic.Checked;
+            movie.IsClassic = _chkIsClassic.Checked;
 
             movie.RunLength = ReadAsInt32(_txtRunLength);  //this.ReadAsInt32
             movie.ReleaseYear = ReadAsInt32(_txtReleaseYear);
@@ -132,6 +132,53 @@ namespace MovieLibrary.WinformsHost
 
             return -1;
         }
+
+        private void OnValidateName ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+            //Name is required
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _errors.SetError(control, "Name is required.");
+                e.Cancel=true;//Not validate
+            } else
+            {
+                _errors.SetError(control, "");
+            }
+                
+        }
+
+        private void OnValidateRunLength ( object sender, CancelEventArgs e )
+        {
+                var control = sender as TextBox;
+                var value = ReadAsInt32(control);
+            //RunLength >=0
+            if (value < 0)
+            {
+                _errors.SetError(control, "RunLength must be >=0");
+                e.Cancel=true;
+            } 
+            else
+            {
+                _errors.SetError(control, "");
+            }   
+         }
+
+                private void OnValidateReleaseYear ( object sender, CancelEventArgs e )
+                {
+                    var control = sender as TextBox;
+                    var value = ReadAsInt32(control);
+                    //RunLength >=0
+                    if (value < 0)
+                    {
+                        _errors.SetError(control, "RunLength must be >=0");
+                        e.Cancel=true;
+                    } else
+                    {
+                        _errors.SetError(control, "");
+                    }            
+                }
+
     }
 }
 

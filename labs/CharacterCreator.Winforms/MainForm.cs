@@ -16,20 +16,20 @@ namespace CharacterCreator.Winforms
         {
             InitializeComponent();
 
-            //toolStripMenuItem2.Click += OnFileExit;
-            //toolStripMenuItem4.Click += OnHelpAoout;
+            _miFileExit.Click += OnFileExit;
+            //_miHelpAbout.Click += OnHelpAoout;
         }
-        
+
     }
 
-    //private void OnFileExit(object sender, EventArgs e)
-    //{
-        //var form = new MainForm();
+    private void OnFileExit(object sender, EventArgs e)
+    {
+        var form = new MainForm();
 
-        //var result = form.ShowDialog(this);
-        //if(result == DialogResult.Cancel)
-            //return;
-        //MessageBox.Show("Exiting the menu.");
+        var result = form.ShowDialog();
+        if(result == DialogResult.Cancel)
+            return;
+        MessageBox.Show("Exiting the menu.");
         
-    //}
+    }
 }

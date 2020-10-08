@@ -4,6 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <Company>Donald Helaire</Company>
+    <Product>Movie Library</Product>
+    <Authors>Donald Helaire</Authors>
   </PropertyGroup>
 
   <ItemGroup>
