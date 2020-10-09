@@ -16,20 +16,14 @@ namespace CharacterCreator.Winforms
         {
             InitializeComponent();
 
-            _miFileExit.Click += OnFileExit;
+            _miFileExit.Click +=_miFileExit_Click; 
+          
             //_miHelpAbout.Click += OnHelpAoout;
         }
 
-    }
-
-    private void OnFileExit(object sender, EventArgs e)
-    {
-        var form = new MainForm();
-
-        var result = form.ShowDialog();
-        if(result == DialogResult.Cancel)
-            return;
-        MessageBox.Show("Exiting the menu.");
-        
+        private void _miFileExit_Click ( object sender, EventArgs e )
+        {
+            Close();
+        }
     }
 }
