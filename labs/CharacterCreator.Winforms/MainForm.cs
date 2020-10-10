@@ -22,9 +22,7 @@ namespace CharacterCreator.Winforms
         private void _miFileExit_Click ( object sender, EventArgs e )
         {
             Close();
-        }
-
-        //private _about aboutMenu;   
+        } 
         private void _miHelpAoout_Click ( object sender, EventArgs e )
         {
             var form = new _about();
@@ -32,7 +30,9 @@ namespace CharacterCreator.Winforms
             var result = form.ShowDialog(this);
             if (result == DialogResult.OK)
                 return;
-            MessageBox.Show("About box closed");
+            else
+            MessageBox.Show("About closed");
+            Close();
         }
     }
 }

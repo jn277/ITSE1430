@@ -33,6 +33,8 @@
             this._miFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this._miHelp = new System.Windows.Forms.ToolStripMenuItem();
             this._miHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this._miCharacter = new System.Windows.Forms.ToolStripMenuItem();
+            this._miCharacterNew = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,7 +42,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._miFile,
-            this._miHelp});
+            this._miHelp,
+            this._miCharacter});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(284, 24);
@@ -59,7 +62,7 @@
             // 
             this._miFileExit.Name = "_miFileExit";
             this._miFileExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this._miFileExit.Size = new System.Drawing.Size(180, 22);
+            this._miFileExit.Size = new System.Drawing.Size(134, 22);
             this._miFileExit.Text = "E&xit";
             // 
             // _miHelp
@@ -76,6 +79,21 @@
             this._miHelpAbout.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this._miHelpAbout.Size = new System.Drawing.Size(180, 22);
             this._miHelpAbout.Text = "A&bout";
+            // 
+            // _miCharacter
+            // 
+            this._miCharacter.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._miCharacterNew});
+            this._miCharacter.Name = "_miCharacter";
+            this._miCharacter.Size = new System.Drawing.Size(70, 20);
+            this._miCharacter.Text = "&Character";
+            // 
+            // _miCharacterNew
+            // 
+            this._miCharacterNew.Name = "_miCharacterNew";
+            this._miCharacterNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this._miCharacterNew.Size = new System.Drawing.Size(180, 22);
+            this._miCharacterNew.Text = "N&ew";
             // 
             // MainForm
             // 
@@ -102,6 +120,8 @@
         private System.Windows.Forms.ToolStripMenuItem _miFileExit;
         private System.Windows.Forms.ToolStripMenuItem _miHelp;
         private System.Windows.Forms.ToolStripMenuItem _miHelpAbout;
+        private System.Windows.Forms.ToolStripMenuItem _miCharacter;
+        private System.Windows.Forms.ToolStripMenuItem _miCharacterNew;
     }
 }
 
