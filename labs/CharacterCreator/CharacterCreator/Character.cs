@@ -8,17 +8,44 @@ namespace CharacterCreator
 {
     public class Character
     {
-        public string characterName;    //The name of the character.
-        public string profession;       //The profession of the character.
-        public string race;             //The race of the character. 
-        public int attributes;          //A set of numeric attributes that define a character.
-        public string description;      //The optional, biographic details of the character.
+        public string CharacterName;    //The name of the character.
+        public string Profession;       //The profession of the character.
+        public string Race;             //The race of the character. 
+        public int Attributes;          //A set of numeric attributes that define a character.
+        public string Description;      //The optional, biographic details of the character.
 
 
-        private string _characterName = " ";
-        private string _profession = "Fighter, Hunter, Priest, Rogue, Wizard";
-        private string _race = "Dwarf, Elf, Gnome, Half Elf, Human";
-        private int _attributes = 100;
-        private string _description = "";
+        private string _characterName;
+        private string _profession;
+        private string _race;
+        private int _attributes;
+        private string _description;
+        public string _CharacterName
+        {
+            get { return _CharacterName ?? ""; }
+            set { _CharacterName = value; }
+        }
+        public string _Profession
+        {
+            get { return _profession ?? ""; }
+            set { _profession = value; }
+        }
+        public string _Race
+        {
+            get { return _race ?? ""; }
+            set { _race = value; }
+        }
+
+        public int _Attributes
+        {
+            get { return _attributes; }
+            set { _attributes = value; }
+        }
+
+        public string _Description
+        {
+            get { return _description ?? ""; }
+            set { _description = value; }
+        }
     }
 }

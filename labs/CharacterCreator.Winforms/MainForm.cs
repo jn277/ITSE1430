@@ -18,6 +18,8 @@ namespace CharacterCreator.Winforms
 
             _miFileExit.Click +=_miFileExit_Click; 
             _miHelpAbout.Click += _miHelpAoout_Click;
+            _miCharacterNew.Click += _miCharacterNew_Click;
+
         }
         private void _miFileExit_Click ( object sender, EventArgs e )
         {
@@ -32,6 +34,17 @@ namespace CharacterCreator.Winforms
                 return;
             else
             MessageBox.Show("About closed");
+            Close();
+        }
+
+        private void _miCharacterNew_Click ( object sender, EventArgs e )
+        {
+            var form = new _newCharacter();
+
+            var result = form.ShowDialog(this);
+            if (result == DialogResult.OK)
+                return;
+            else
             Close();
         }
     }
