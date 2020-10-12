@@ -14,7 +14,6 @@ namespace CharacterCreator
         public int Attributes;          //A set of numeric attributes that define a character.
         public string Description;      //The optional, biographic details of the character.
 
-
         private string _characterName;
         private string _profession;
         private string _race;
@@ -46,6 +45,25 @@ namespace CharacterCreator
         {
             get { return _description ?? ""; }
             set { _description = value; }
+        }
+
+        public string Validate ()
+        {
+            if (String.IsNullOrEmpty(_characterName)) //this.Name
+                return "Name is required";
+
+            if (String.IsNullOrEmpty(_Profession)) //this.Name
+                return "Profession is required";
+
+            if (String.IsNullOrEmpty(_race)) //this.Name
+                return "Race is required";
+
+            if (_Attributes  > 100)
+                return "The attribute number cannot exceed 100";
+
+            if (String.IsNullOrEmpty(_description)) //this.Name
+                return "Description is required";
+            return null;
         }
     }
 }
