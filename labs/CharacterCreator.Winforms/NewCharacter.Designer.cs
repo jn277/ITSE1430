@@ -1,6 +1,6 @@
 ﻿namespace CharacterCreator.Winforms
 {
-    partial class _newCharacter
+    partial class NewCharacter
     {
         /// <summary>
         /// Required designer variable.
@@ -154,7 +154,7 @@
             this._btnCancel.Text = "Cancel";
             this._btnCancel.UseVisualStyleBackColor = true;
             // 
-            // _newCharacter
+            // NewCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -173,7 +173,7 @@
             this.Controls.Add(this.LabelName);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "_newCharacter";
+            this.Name = "NewCharacter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
             this.ResumeLayout(false);

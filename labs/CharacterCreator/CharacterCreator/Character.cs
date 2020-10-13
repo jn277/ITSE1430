@@ -8,40 +8,34 @@ namespace CharacterCreator
 {
     public class Character
     {
-        public string CharacterName;    //The name of the character.
-        public string Profession;       //The profession of the character.
-        public string Race;             //The race of the character. 
-        public int Attributes;          //A set of numeric attributes that define a character.
-        public string Description;      //The optional, biographic details of the character.
-
-        private string _characterName;
-        private string _profession;
-        private string _race;
-        private int _attributes;
-        private string _description;
-        public string _CharacterName
+        private string _characterName;      //The name of the character.
+        private string _profession;         //The profession of the character.
+        private string _race;               //The race of the character. 
+        private int _attributes;            //A set of numeric attributes that define a character.
+        private string _description;        //The optional, biographic details of the character.
+        public string CharacterName
         {
-            get { return _CharacterName ?? ""; }
-            set { _CharacterName = value; }
+            get { return _characterName ?? ""; }
+            set { _characterName = value; }
         }
-        public string _Profession
+        public string Profession
         {
             get { return _profession ?? ""; }
             set { _profession = value; }
         }
-        public string _Race
+        public string Race
         {
             get { return _race ?? ""; }
             set { _race = value; }
         }
 
-        public int _Attributes
+        public int Attributes
         {
             get { return _attributes; }
             set { _attributes = value; }
         }
 
-        public string _Description
+        public string Description
         {
             get { return _description ?? ""; }
             set { _description = value; }
@@ -49,19 +43,19 @@ namespace CharacterCreator
 
         public string Validate ()
         {
-            if (String.IsNullOrEmpty(_characterName)) //this.Name
+            if (String.IsNullOrEmpty(_characterName)) 
                 return "Name is required";
 
-            if (String.IsNullOrEmpty(_Profession)) //this.Name
+            if (String.IsNullOrEmpty(_profession)) 
                 return "Profession is required";
 
-            if (String.IsNullOrEmpty(_race)) //this.Name
+            if (String.IsNullOrEmpty(_race)) 
                 return "Race is required";
 
-            if (_Attributes  > 100)
+            if (_attributes  > 100)
                 return "The attribute number cannot exceed 100";
 
-            if (String.IsNullOrEmpty(_description)) //this.Name
+            if (String.IsNullOrEmpty(_description)) 
                 return "Description is required";
             return null;
         }

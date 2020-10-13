@@ -10,40 +10,64 @@ using System.Windows.Forms;
 
 namespace CharacterCreator.Winforms
 {
-    public partial class _newCharacter : Form
+    public partial class NewCharacter : Form
     {
-        public _newCharacter ()
+        private static string CharacterName;
+        private static string Profession;
+        private static string Race;
+        private static string Attributes;
+        private static string Description;
+
+        public NewCharacter ()
         {
             InitializeComponent();
-            //_txtCharacterName
-            //_comboProfession
-            //_comboRace
-            //_txtAttributes
-            //_txtDescription
-            //_btnSave
-            //_btnCancel
         }
 
-        public _newCharacter ( Character character ) : this()
+        public NewCharacter ( NewCharacter character ) : this()
         {
-
+            
         }
 
-        //protected override void OnLoad ( EventArgs e )
-        //{
-            //Call the base member            
-            //this.OnLoad(e);
-            //base.OnLoad(e);
+        public NewCharacter character { get; set; }
+        protected override void OnLoad ( EventArgs e )
+        {       
+            base.OnLoad(e);
 
-            //if (!= null)
-            //{
-            //_txtCharacterName = Movie.Name;
-            //_txtDescription.Text = Movie.Description;
-            //_comboRating.SelectedText = Movie.Rating;
-            //_chkIsClassic.Checked = Movie.IsClassic;
-            //_txtRunLength.Text = Movie.RunLength.ToString();
-            //_txtReleaseYear.Text = Movie.ReleaseYear.ToString();
+            if (character!= null)
+            {
+                _txtCharacterName.Text = NewCharacter.CharacterName;
+                _comboProfession.SelectedText = NewCharacter.Profession;
+                _comboRace.SelectedText = NewCharacter.Race;
+                _txtAttributes.Text = NewCharacter.Attributes;
+                _txtDescription.Text = NewCharacter.Description;
+            };
+        }
+        private void OnCancel ( object sender, EventArgs e )
+        {
+            Close();
+        }
+        private void OnSave ( object sender, EventArgs e )
+        {
+            var button = sender as Button;
+            if (button == null)
+                return;
+            var character = new NewCharacter();
+            NewCharacter.CharacterName = _txtCharacterName.Text;
+            NewCharacter.Profession = _comboProfession.SelectedText;
+            NewCharacter.Race = _comboRace.SelectedText;
+            NewCharacter.Attributes = _txtAttributes.Text;
+            NewCharacter.Description = _txtDescription.Text;
+
+            var error = character.Validate();
+            //if (!IsNullOrEmpty(error))
+            //{ 
+                //MessageBox.Show(error, "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //DialogResult = DialogResult.None;
+                //return;
             //};
-        //}
-      }
- }
+            Close();
+        }
+
+    }
+}
+    

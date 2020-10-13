@@ -39,7 +39,7 @@ namespace CharacterCreator.Winforms
 
         private void _miCharacterNew_Click ( object sender, EventArgs e )
         {
-            var form = new _newCharacter();
+            var form = new NewCharacter();
 
             var result = form.ShowDialog(this);
             if (result == DialogResult.OK)
