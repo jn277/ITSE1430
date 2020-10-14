@@ -9,6 +9,7 @@ namespace CharacterCreator
     public class Character
     {
         private string _characterName;      //The name of the character.
+        private string _characterRoster;    //The name of the character in roster.
         private string _profession;         //The profession of the character.
         private string _race;               //The race of the character. 
         private int _attributes;            //A set of numeric attributes that define a character.
@@ -17,6 +18,12 @@ namespace CharacterCreator
         {
             get { return _characterName ?? ""; }
             set { _characterName = value; }
+        }
+
+        public string CharacterRoster
+        {
+            get { return _characterRoster ?? ""; }
+            set { _characterRoster = value; }
         }
         public string Profession
         {
@@ -44,6 +51,9 @@ namespace CharacterCreator
         public string Validate ()
         {
             if (String.IsNullOrEmpty(_characterName)) 
+                return "Name is required";
+
+            if (String.IsNullOrEmpty(_characterRoster))
                 return "Name is required";
 
             if (String.IsNullOrEmpty(_profession)) 
