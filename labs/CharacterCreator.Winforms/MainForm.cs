@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * ITSE 1430
+ * Donald Helaire
+ * Lab3
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,9 +41,9 @@ namespace CharacterCreator.Winforms
             var result = form.ShowDialog(this);
             if (result == DialogResult.OK)
                 return;
-            else
-            MessageBox.Show("About closed");
-            Close();
+            //else
+            //MessageBox.Show("About closed");
+            //Close();
         }
 
         private void _miCharacterNew_Click ( object sender, EventArgs e )

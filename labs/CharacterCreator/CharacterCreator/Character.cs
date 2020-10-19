@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * ITSE 1430
+ * Donald Helaire
+ * Lab3
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +19,7 @@ namespace CharacterCreator
         private string _race;               //The race of the character. 
         private int _attributes;            //A set of numeric attributes that define a character.
         private string _description;        //The optional, biographic details of the character.
+        public int Id = 100;
         public string CharacterName
         {
             get { return _characterName ?? ""; }
