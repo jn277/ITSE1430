@@ -58,7 +58,14 @@ namespace MovieLibrary.WinformsHost
             _miHelpAbout.Click += OnHelpAbout;
 
         }
-            private void OnHelpAbout ( object sender, EventArgs e )
+
+        protected override void OnLoad ( EventArgs e )
+        {
+            base.OnLoad(e);
+
+            RefreshUI();
+        }
+        private void OnHelpAbout ( object sender, EventArgs e )
             {
                 var about = new AboutBox();
 

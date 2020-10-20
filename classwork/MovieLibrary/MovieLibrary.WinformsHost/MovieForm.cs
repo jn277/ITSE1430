@@ -185,7 +185,7 @@ namespace MovieLibrary.WinformsHost
             //string ToString () ::= Converts a value to a string
             //     bool Equals ( object ) ::= Determines if the current instance equals another value
             //     in GetHashCode () ::= Returns an integral value representing the object
-            var str = 10.ToString(); /"10";
+            var str = 10.ToString(); //"10";
             var form = new Form();
             form.ToString();// System.Windows.Forms.Form
 
