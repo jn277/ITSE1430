@@ -1,66 +1,28 @@
+/*
+ * ITSE 1430 
+ * Movie Library Console Application
+ */
 using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
 using System.Windows.Forms;
-
-
-//namespace MovieLibrary
-//{
-   //namespace WinformsHost
-//    {
-//    }
-//}
-//namespace Company.Product.<area>
-//namespace Microsoft.Office.Word
-//namespace Microsoft.Office.Excel
+//using System.Windows.Forms;
 
 namespace MovieLibrary.WinformsHost
 {
-    class Program
+    static class Program
     {
-
-        static void Main ( string[] args )
+        /// <summary>
+        ///  The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main ()
         {
-            //FunWithTypes();
-            //FunWithVariables();
+            //System.Windows.Forms.Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
 
-            // while => while (E) S;
-            // 0+ iterations, pre test condition
-            while (true)
-            {
-                //char choice = DisplayMenu();
-                //if (choice == 'Q')
-                //return;
-                //else if (choice == 'A')
-                //AddMovie();
-                //switch (DisplayMenu())
-                //{
-                    //case 'Q': return;
-
-                    //case 'A': AddMovie(); break;
-
-                    //case 'V': ViewMovie(); break;
-                //};
-            };
-
-            //static string title = "";
-            //static string description = "";
-            //static string rating = "";
-            //static int duration;
-            //static bool isClassic;
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
+            //Application.Run(new MovieLibrary.WinformsHost.MainForm());
         }
-        //static string title = "";
-        //static string description = "";
-        //static string rating = "";
-        //static int duration;
-        //static bool isClassic;
     }
 }
-
-//namespace OtherNamespace
-//{
-//    public class MainForm
-//    {
-//    }
-//}

@@ -1,24 +1,29 @@
-﻿using System;
+﻿/*
+ * ITSE 1430 
+ * Movie Library Console Application
+ */
+using System;
 using System.Text;
 
 namespace MovieLibrary
 {
     class Program
     {
-     static void Main ( string[] args )
+        static void Main ( string[] args )
         {
             //FunWithTypes();
             //FunWithVariables();
 
-             // while => while (E) S;
+            // while => while (E) S;
             // 0+ iterations, pre test condition
             while (true)
             {
+                //Scope - lifetime of a variable : starts at declaration and continues until end of current scope
                 //char choice = DisplayMenu();
                 //if (choice == 'Q')
-                //return;
+                //    return;
                 //else if (choice == 'A')
-                //AddMovie();
+                //    AddMovie();
                 switch (DisplayMenu())
                 {
                     case 'Q': return;
@@ -28,49 +33,51 @@ namespace MovieLibrary
                     case 'V': ViewMovie(); break;
                 };
             };
-
-            //static string title = "";
-            //static string description = "";
-            //static string rating = "";
-            //static int duration;
-            //static bool isClassic;
         }
+
+        static string title = "";
+        static string description = "";
+        static string rating = "";
+        static int duration;
+        static bool isClassic;
 
         static void AddMovie ()
         {
             //Get title
             Console.WriteLine("Movie title: ");
-            string title = Console.ReadLine();
+            //string title = Console.ReadLine();
+
+            //Type inferencing - compile time only
+            //Restrictions:
+            // 1. ONLY works with local variables
+            // 2. Variable must be initialized 
+            // 3. (Sort of) Cannot figure out type or it is wrong
             //string title = ReadString(true);
             //int title2 = "";
             title = ReadString(true);  //string title = ReadString(true);
 
+            //title = 10;
+
             //Get description
             Console.WriteLine("Description (optional): ");
-            string description = Console.ReadLine();
-            //string description = ReadString(false);
+            //string description = Console.ReadLine();
             description = ReadString(false);
-
 
             //Get rating
             Console.WriteLine("Rating: ");
-            string rating = Console.ReadLine();
-            //string rating = ReadString(false);
+            //string rating = Console.ReadLine();
             rating = ReadString(false);
 
             //Get duration
             Console.WriteLine("Duration (in minutes): ");
             //string duration = Console.ReadLine();
-            int duration = ReadInt32(0);
-            //duration = ReadInt32(0);
+            duration = ReadInt32(0);
 
             //Get is classic
             Console.WriteLine("Is Classic (Y/N)? ");
             //string isClassic = Console.ReadLine();
-            bool isClassic = ReadBoolean();
-            //isClassic = ReadBoolean();
+            isClassic = ReadBoolean();
         }
-
 
         static char DisplayMenu ()
         {
@@ -81,8 +88,9 @@ namespace MovieLibrary
             {
                 Console.WriteLine("Movie Library");
                 Console.WriteLine("-----------------");
-                Console.WriteLine("V)iew Movie");
+
                 Console.WriteLine("A)dd Movie");
+                Console.WriteLine("V)iew Movie");
                 Console.WriteLine("Q)uit");
 
                 //Get input from user
@@ -121,6 +129,9 @@ namespace MovieLibrary
                 //Read as string
                 string value = Console.ReadLine();
 
+                //Not useful because of how it is parsed
+                //Boolean.TryParse(value, out bool result)
+
                 // switch - replacement for if-else-if WHEN
                 //  Each condition is against same variable
                 //  AND equality
@@ -135,12 +146,7 @@ namespace MovieLibrary
                 //if (value == "Y" || value == "y")  //NOT THE SAME ::=   value == "Y" || "y"
                 //    return true;
                 //else if (value == "N" || value == "n")
-
-                //Boolean.TryParse(value, out bool result)           
-                //if (value == "Y")
-                //return true;
-                //else if (value == "N")
-                // return false;
+                //    return false;
                 //else
                 //    S;
                 // C++ DIFFERENCES
@@ -148,16 +154,18 @@ namespace MovieLibrary
                 //   2. Any expression type is allowed
                 //   3. Case labels must be unique and compile time constants
                 //   4. Multiple statements are allowed
-                //switch (value)
                 switch (value.ToLower())
                 {
                     case "X": Console.WriteLine("Wrong value"); break;
-                    case "Y":                   //If case statement empty (including semicolon) then fallthrough
+
+                    //case "Y":                   //If case statement empty (including semicolon) then fallthrough
                     case "y": return true;
 
-                    case "N": return false;
+                    //case "N": 
+                    case "n": return false;
 
-                    case "A":
+                    //case "A":
+                    case "a":
                     {
                         //Use block statement for more than 1 statement
                         Console.WriteLine("Wrong value");
@@ -165,11 +173,10 @@ namespace MovieLibrary
                         break;
                     };
 
-                    default:
-                    break;//if nothing else
-
+                    default: break; //if nothing else
                 };
-                    DisplayError("Invalid option");
+
+                DisplayError("Invalid option");
             } while (true);
         }
 
@@ -178,6 +185,8 @@ namespace MovieLibrary
         {
             return ReadInt32(Int32.MinValue);
         }
+
+        //ReadFloat () ReadSingle
 
         //Reads an integer with a minimum value
         static int ReadInt32 ( int minimumValue )
@@ -202,7 +211,7 @@ namespace MovieLibrary
                 //Inline variable declaration - out parameters only
                 //int result;
                 //if (Int32.TryParse(value, out int result) && result >= minimumValue)
-                //return result;
+                //if (int.TryParse())
                 if (Int32.TryParse(value, out var result) && result >= minimumValue)
                     return result;
 
@@ -217,23 +226,21 @@ namespace MovieLibrary
                     DisplayError("Must be integral value");
             } while (true);
         }
-            static void ViewMovie ()
-            {
-                Console.WriteLine("Title\t\tRating\tDuration (in mins)\tIsClassic");
-                //Console.WriteLine("-----------------");
-                Console.WriteLine("".PadLeft(50, '-'));
+
+        static void ViewMovie ()
+        {
+            Console.WriteLine("Title\t\tRating\tDuration\tIsClassic");
+            //Console.WriteLine("-----------------");
+            Console.WriteLine("".PadLeft(60, '-'));
+
             //1. Format arguments
             // Format string - consists of string characters with arguments specified in curly braces as zero-based ordinals
             // 1. Readable but not great
             // 2. No compile time checking, runtime error
             //Console.WriteLine("{0}\t{1}\t{2}\t{3}", title, rating, duration, isClassic);
 
-            string title = null;
-            object rating = null;
-            object duration = null;
-            object isClassic = null;
             //2. String.Format
-            var message = String.Format("{0}\t{1}\t{2}\t{3}", title, rating, duration, isClassic);
+            //var message = String.Format("{0}\t{1}\t{2}\t{3}", title, rating, duration, isClassic);
             //Console.WriteLine(message);
 
             //3. String concatenation
@@ -242,25 +249,29 @@ namespace MovieLibrary
             //   D: Harder to read as it gets longer
             //   D: Bad performance
             //var message = title + "\t" + rating + "\t" + duration + "\t" + isClassic;
-            Console.WriteLine(message);
+            //var message = title + "\t" + rating + "\t" + duration.ToString() + "\t" + isClassic.ToString();
+            //Console.WriteLine(message);
 
             //4. String builder
-            var builder = new StringBuilder();
-            builder.Append(title);
-            builder.Append("\t");
-            builder.Append(rating);
-            builder.Append("\t");
-            builder.Append(duration);
-            builder.Append("\t");
-            builder.Append("isClassic");
-            builder.Append("\t");
-            message = builder.ToString();
-            Console.WriteLine(message);
+            //   A: Efficient on memory
+            //   A: Conditional formatting
+            //   D: Longer
+            //   D: Harder to read
+            //var builder = new StringBuilder();
+            //builder.Append(title);
+            //builder.Append("\t");
+            //builder.Append(rating);
+            //builder.Append("\t");
+            //builder.Append(duration);
+            //builder.Append("\t");
+            //builder.Append("isClassic");
+            //builder.Append("\t");
+            //message = builder.ToString();
 
             //5. String Joining
-            message = String.Join("\t", title, rating, duration, isClassic);
+            //message = String.Join("\t", title, rating, duration, isClassic);
 
-            //Conditional operator     C ? T : 
+            //Conditional operator     C ? T : F
             // if (C) return T else return F
 
             //6. String interpolation - $
@@ -268,33 +279,36 @@ namespace MovieLibrary
             //   A. More readable
             //   A. Compile time checked
             //   D. Compile time only and against literals
-            var classicIndicator = (bool)isClassic ? "Yes" : "No";
-            if ((bool)isClassic)
+            var classicIndicator = isClassic ? "Yes" : "No";
+            /*if (isClassic)
                 classicIndicator = "Yes";
             else
                 classicIndicator = "No";
-            //var message = $"{title}\t\t{rating}\t{duration}\t\t{isClassic}";
+            */
+            var message = $"{title}\t\t{rating}\t{duration}\t\t{classicIndicator}";
             Console.WriteLine(message);
 
-            string description = null;
             //Write description if available
             if (!String.IsNullOrEmpty(description))
                 Console.WriteLine(description);
 
             Console.WriteLine("");
 
+            //TODO: Description if available
+            //Console.WriteLine(" " + description);
+
             //TODO: If available
-            Console.WriteLine(" " + rating);
+            //Console.WriteLine(" " + rating);
 
-                Console.WriteLine(duration);
+            //Console.WriteLine(duration);
 
-                Console.WriteLine(isClassic);
-            }
-        
+            //Console.WriteLine(isClassic);
+        }
 
         //Arithmetic (unary) 
         //  +E
         //  -E 
+
         //Arithmetic (binary) - type coercion
         // addition 10 + 12   
         // subtraction 123 - 110.4
@@ -308,7 +322,7 @@ namespace MovieLibrary
         //  (double)10 / 3 => double /int 
 
         // typecast => (T)E
-        //not allowed => (string)10 , (int)"Hello",  (int)10.5
+        // not allowed => (string)10 , (int)"Hello",  (int)10.5
 
         //Logical operators (booleans)
         // NOT => !E : boolean
@@ -337,7 +351,12 @@ namespace MovieLibrary
             } while (true);
         }
 
-        /*static void FunWithStrings()
+        #region Demoing Language Features
+
+        static void TakesAnInt ( int hours ) { }
+        //static void TakesAnInt ( Int32 hours ) { }
+
+        static void FunWithStrings ()
         {
             //5 characters in it, takes up 10 bytes
             // C++ difference: no NULL
@@ -349,16 +368,16 @@ namespace MovieLibrary
             //   \' - ' (char literal)
             //   \\ - \ 
             //   \xHH - hex equivalent \x0A 
-            var name = "Bob";  //Compiler warning - Bobc            
+            var name = "Bob\\c";  //Compiler warning - Bobc            
+            var message = "Hello \"Bob\"\nWorld";
 
             //File paths - always escape sequences
+            var filePath = "C:\\Temp\\test.pdf";  //C:\Temp\test.pdf
             var filePath2 = @"C:\Temp\test.pdf";  //Verbatim string
-
-            //TODO: null and empty string//5 characters in it, takes up 10 bytes
-            // C++ difference: no NULL
 
             //TODO: null and empty string
             var emptyString = "";
+            var spaceString = " ";
 
             var emptyString2 = String.Empty;  // ""
             var areEqual = emptyString == emptyString2;  //True
@@ -371,35 +390,42 @@ namespace MovieLibrary
             // 2. Length
             var isEmpty2 = emptyString.Length == 0;
 
-            // 3. String.Compare
-            var isEmpty3 = String.Compare(emptyString, "") == 0;
             // 3. String.Compare => int
             //      < 0     left < right
             //      == 0    left == right
             //      > 0     left > right
+            var isEmpty3 = String.Compare(emptyString, "") == 0;
 
             // 4. Preferred IsNullOrEmpty => boolean
             var isEmpty4 = String.IsNullOrEmpty(emptyString);
 
             // Can be null
             string nullString = null;
+            //String nullString = null;  //Identical
+
+            int hours;
+            //Int32 hours;
+
+            //nullString.ToUpper();  //Will crash
             var areEqual3 = emptyString == nullString;  //false
             //var willCrash = nullString.Length == 0;     //Will crash
             var willNotBeEqual = String.Compare(emptyString, null) == 0;
+            //String.Compare(emptyString, null);  //String formal type
+
             //var isEmpty5 = nullString != null && nullString != "";  //Inefficient
 
             //Converting to string E.ToString()
             var asString = emptyString.ToString();
             asString = 10.ToString();  // "10"
-            asString = (50 * 3).ToString(); // "150
+            asString = (50 * 3).ToString(); // "150"
 
             // Common Functions -> E.func()
 
             //Comparison
             // 1. Relational operator == != ::= case sensitive
             // 2. String.Compare
-            var relationalCompare = String.Compare("Hello", "hello") == 0;  //Case sensitive
-            var caseInsensitiveCompare = String.Compare("Hello", "hello", true) == 0;  //Case insensitive
+            var relationalCompare = String.Compare("Hello", "hello") == 0;  //Case sensitive, culture aware
+            var caseInsensitiveCompare = String.Compare("Hello", "hello", true) == 0;  //Case insensitive, culture aware
             //locale - Windows cultural settings
             var ordinalCompare = String.Compare("Hello", "hello", StringComparison.OrdinalIgnoreCase) == 0;  //Case insensitive, ordinal (keys, paths)
 
@@ -407,9 +433,9 @@ namespace MovieLibrary
             var toUpper = "Hello".ToUpper();  // HELLO ToUpper() => string
             var toLower = "Hello".ToLower();  // hello ToLower() => string
 
-
             // trim and padding
-            name = "   Bob   ";
+            var areSpacesEqual = "" == " ";
+            name = "   Bob \t ";
 
             name = name.Trim();  //Removes leading and trailing whitespace (newlines, tabs, spaces) - "Bob"
                                  //TrimStart, TrimEnd         }
@@ -438,25 +464,59 @@ namespace MovieLibrary
             // Index/IndexOfAny ( string ) => index
             // StartsWith / EndsWith
 
-            var leftPath = @"C:\temp";
-            var rightPath = "folderA\file.txt";
+            var leftPath = @"C:\temp\";
+            var rightPath = @"\folderA\file.txt";
 
             var endsWithSlash = leftPath.EndsWith(@"\");
             var startsWithSlash = rightPath.StartsWith(@"\");
 
+            var path = leftPath;
+            if (endsWithSlash && !startsWithSlash)
+                path += rightPath;
+            else if (endsWithSlash && startsWithSlash)
+                path += rightPath.Substring(1);  //"folderA\file.txt"
+            else //!endsWithslash && StartsWithSlash
+                path += rightPath;
         }
 
-        //private static void FunWithVariables ()
-        //{
+        private static void FunWithVariables ()
+        {
             //Definition before usage
             //value;
 
             //Declares hours of type int with initial value 10 (initializer expression)
+            int hours = 10;
 
             //Definitely assigned rule
-            //int value;
-            //value = 10;
-            //int calculatedValue = value * 10;
+            int value;
+            value = 10;
+            int calculatedValue = value * 10;
+
+            //Identifiers rule
+            //  Must start with underscore or a letter
+            //  Must consist of letters, digits or underscore
+            //  Must be unique within scope
+            //  Cannot be a keyword
+
+            // Variable names
+            //  camelCased - local variables and parameters
+            //  nouns
+            //  descriptive and no abbreviations or acronyms (e.g. okButton, nbrPeople
+
+            //Multiple variable declaration
+            int width, length;   // int width; int length;
+            int grade1 = 50, grade = 60;
+
+            //Block declarations
+            // A: Easy to find
+            // A: Easy to see what is being used
+            // D: Cannot see usage
+            // D: Hard to tell what is actually still used
+            int x, y, z;
+            double rate1, rate2;
+            string name1, name2;
+            //...
+            name2 = "";
 
             //When needed
             //int x = 10;
@@ -465,14 +525,13 @@ namespace MovieLibrary
 
             // double rate1 = x * 0.5;
 
-
-        //}
+        }
 
         //Function definition - declaration + implementation
         // [modifiers] T id ([parameters) { S* }
         //Function signature - [return-type] name, parameter types
-        //static void FunWithTypes ()
-        //{
+        static void FunWithTypes ()
+        {
             //Variable - named memory location where you can read and write a value; name, type and value
             //
             //Literal - value that can be read, fixed at compilation; type and value
@@ -500,8 +559,10 @@ namespace MovieLibrary
             //   32_766, 3_2_7_6_6, 0b1011_1010
 
             //Variable declaration - T id [ = E ];
-            //int hours = 10;
-            //int ratio = hours * 40;
+            int hours = 10;
+            int code = 0xFF;
+            int ratio = hours * 40;
+
             //Floating point types - real numbers IEEE
             //  float - 4 bytes, +-E38, 7 to 9 precision 123.456789
             //  double - 8 bytes, +-E308, 15 to 17 precision - DEFAULT
@@ -509,9 +570,13 @@ namespace MovieLibrary
             // Literals
             //    123.45F; => float
             //     123.45M => decimal
+            double payRate = 123.456789;
+            payRate = 123E12;
+            decimal price = 456.746M;
 
             //boolean
             // bool - 1 byte, true or false (0) 
+            bool isPassing = true;
             //bool success = 1;  //ERROR
             //int isPassing = 1;  //BAD
 
@@ -520,8 +585,17 @@ namespace MovieLibrary
             //  string - 0+ bytes
             //  'X' => char
             //  "abcf" => string literal
+            char letterA = 'A';
+            char digit0 = '1'; // != 1
+            char hex = '\x0A'; // CR
 
-        */}
- }
+            string name = "Bob";
+            string empty = "";
+        }
+
+        #endregion
+    }
+}
+
 
 

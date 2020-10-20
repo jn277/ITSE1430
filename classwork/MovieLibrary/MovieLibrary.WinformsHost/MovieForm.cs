@@ -5,20 +5,16 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//Hierarchical namesapces
 namespace MovieLibrary.WinformsHost
 {
+    // class-declaration ::= [access] [modifiers] class identifier [ : T ]
+    // C# supports only a single base type
     public partial class MovieForm : Form
     {
+        #region Constructors
 
         //Access:
         // Public - accessible in derived type
@@ -30,8 +26,9 @@ namespace MovieLibrary.WinformsHost
         //  Abstract - Base type defines it but does not implement, derived types must override it
 
         // Syntax
-        // Constructor-declaration ::= [access] T () { S* }
-        public MovieForm ()
+        // ctor-declaration ::= [access] T () { S* }
+        //Can call base constructor if needed, base default constructor called if not specified
+        public MovieForm ()// : base()
         {
             //DO NOT CALL virtual members inside of constructors
             InitializeComponent();
@@ -39,17 +36,23 @@ namespace MovieLibrary.WinformsHost
 
         public MovieForm ( Movie movie ) : this(movie, null)
         {
-            Movie = movie;
+            //Constructor chaining eliminates need for this dup initialization
+            //Movie = movie;
         }
 
         //Constructor chaining - calling one constructor from another
         public MovieForm ( Movie movie, string title ) : this()
         {
+            //Constructor chaining eliminates need for this dup initialization
+            //InitializeComponent();
+
             Movie = movie;
             Text = title ?? "Add Movie";
         }
+        #endregion
 
-        public Movie Movie { get; set; }
+        //Properties can be virtual if needed but generally does not make sense
+        public virtual Movie Movie { get; set; }
 
         //public virtual void OnLoad ( EventArgs e ) { }
         //Override indicates to compiler that you are overriding a virtual method
@@ -68,7 +71,12 @@ namespace MovieLibrary.WinformsHost
                 _txtRunLength.Text = Movie.RunLength.ToString();
                 _txtReleaseYear.Text = Movie.ReleaseYear.ToString();
             };
+
+            // Go ahead and show validation errors
+            ValidateChildren();
         }
+
+        #region Event Handlers
 
         //Method - function inside a class
         private void OnCancel ( object sender, EventArgs e )
@@ -81,6 +89,13 @@ namespace MovieLibrary.WinformsHost
         //     void identifier ( object sender, EventArgs e )
         private void OnSave ( object sender, EventArgs e )
         {
+            //Force validation of all controls
+            if (!ValidateChildren())
+            {
+                DialogResult = DialogResult.None;
+                return;
+            };
+
             // I want the button that was clicked
             //Type casting
             // WRONG: var button = (Button)sender;  // C-style cast - crashes if wrong
@@ -119,10 +134,67 @@ namespace MovieLibrary.WinformsHost
                 return;
             };
 
-            //TODO: Return movie
+            // Return movie
+            Movie = movie;
             Close();
         }
-        //Event Handlers
+
+        private void OnValidateName ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+
+            //Name is required
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                //Set error using ErrorProvider
+                _errors.SetError(control, "Name is required");
+                e.Cancel = true;  //Not validate
+            } else
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
+        }
+
+        private void OnValidateRunLength ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+
+            var value = ReadAsInt32(control);
+
+            //Run length >= 0
+            if (value < 0)
+            {
+                //Set error using ErrorProvider
+                _errors.SetError(control, "Run length must be >= 0");
+                e.Cancel = true;  //Not validate
+            } else
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
+        }
+
+        private void OnValidateReleaseYear ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+
+            var value = ReadAsInt32(control);
+
+            //Release Year >= 1900
+            if (value < 1900)
+            {
+                //Set error using ErrorProvider
+                _errors.SetError(control, "Release Year must be >= 1900");
+                e.Cancel = true;  //Not validate
+            } else
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
+        }
+        #endregion        
+
         private int ReadAsInt32 ( Control control )
         {
             var text = control.Text;
@@ -133,61 +205,16 @@ namespace MovieLibrary.WinformsHost
             return -1;
         }
 
-        private void OnValidateName ( object sender, CancelEventArgs e )
-        {
-            var control = sender as TextBox;
-            //Name is required
-            if (String.IsNullOrEmpty(control.Text))
-            {
-                _errors.SetError(control, "Name is required.");
-                e.Cancel=true;//Not validate
-            } else
-            {
-                _errors.SetError(control, "");
-            }
-                
-        }
-
-        private void OnValidateRunLength ( object sender, CancelEventArgs e )
-        {
-                var control = sender as TextBox;
-                var value = ReadAsInt32(control);
-            //RunLength >=0
-            if (value < 0)
-            {
-                _errors.SetError(control, "RunLength must be >=0");
-                e.Cancel=true;
-            } 
-            else
-            {
-                _errors.SetError(control, "");
-            }   
-         }
-
-        private void OnValidateReleaseYear ( object sender, CancelEventArgs e )
-         {
-            var control = sender as TextBox;
-            var value = ReadAsInt32(control);
-            //RunLength >=0
-            if (value < 0)
-               {
-                  _errors.SetError(control, "RunLength must be >=0");
-                  e.Cancel=true;
-               } else
-               {
-                  _errors.SetError(control, "");
-               }            
-          }
-       private void PlayWithObjects ( object value )
+        private void PlayWithObjects ( object value )
         {
             //Common Type System (CTS) - there is 1 base type from which all other types derive
-            //System.Object => object
-            //string ToString () ::= Converts a value to a string
+            //  System.Object => object
+            //     string ToString () ::= Converts a value to a string
             //     bool Equals ( object ) ::= Determines if the current instance equals another value
             //     in GetHashCode () ::= Returns an integral value representing the object
             var str = 10.ToString(); //"10";
             var form = new Form();
-            form.ToString();// System.Windows.Forms.Form
+            form.ToString();  // System.Windows.Forms.Form
 
             //Type checking or casting
             // 1. C-style cast ::=  (T)E
@@ -203,7 +230,7 @@ namespace MovieLibrary.WinformsHost
 
             // 3. is-operator ::= E is T
             //       Runtime verifies value is of the given T and returns true if successful or false otherwise
-            var isString = value is string;//true
+            var isString = value is string;  // true
             if (isString)
             {
                 stringValue = (string)value;
@@ -213,14 +240,14 @@ namespace MovieLibrary.WinformsHost
             //        Runtime attempts to convert E to T and if successful stores in identifier else stores default(T)
             if (value is string sValue)
             {
-                //string svalue = value as sting
+                //string svalue = value as string
                 //if (sValue != null)
             }
 
             // Dealing with null
             //   1. Let it fail  = instance.ToString() // errors if null
             //   2. null-coalescing-operator ::= E1 ?? E2
-            //          If E1 is NOT null return E1 else return E2
+            //        If E1 is NOT null return E1 else return E2
             stringValue = stringValue ?? "";
 
             //   3. null-conditional-operator ::= E?.M
@@ -234,9 +261,10 @@ namespace MovieLibrary.WinformsHost
             // return ""
 
             //   4. null reference types
+
+            //int x = null;
+            string s = null;
         }
-
-
     }
 }
 
