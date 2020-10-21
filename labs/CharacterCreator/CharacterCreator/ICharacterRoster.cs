@@ -13,61 +13,89 @@ namespace CharacterCreator
 {
     public class ICharacterRoster
     {
-        public Character Add ( Character character, out string error )
+        public ICharacterRoster ()
         {
-            error = "";
-            for (var index = 0; index < _characterRoster.Length; ++index)
-            {
-                // Array element access ::=  V[int]
-                if (_characterRoster[index] == null)
-                {
-                    var item = CloneCharacter(character);
-                    //Set a unique ID
-                    item.Id = _id++;
-
-                    //Add movie to array
-                    _characterRoster[index] = item;
-
-                    //Set ID on original object and return
-                    character.Id = item.Id;
-                    return character;
-                };
+            var character = new Character() {
+                CharacterName = "Donald Helaire",
+                Profession = "Fighter",
+                Race = "Dwarf",
+                Description = "Unknown",
+                Attributes = 5,
+                CharacterRoster= "Unknown",
             };
-            error = "No more room";
-            return null;
+            Add(character, out var error);
         }
+        
+    
+        public Character Add( Character character, out string error )
+            {
+                error = "";
+                var item = CloneCharacter(character);
+                item.Id = _id++;
+                //_characterRoster.Add(item);
+                character.Id = item.Id;
+                return character;
+            }
 
-        public Character Delete ()
-        {
-            
-        }
+        public void Delete (int id)
+            {
+                var character = GetById(id);
+                if (character != null)
+                {
+                    //Must use the same instance that is stored in the list so ref equality works
+                    _characterRoster.Remove(character);
+                };
+            }
 
-        public Character Get ()
-        {
-            
-        }
+        public Character[] GetAll ()
+            {
+                var items = new Character[_characterRoster.Count];
+                var index = 0;
+                foreach (var movie in _characterRoster)
+                    items[index++] = CloneCharacter(character);
+                return items;
+            }
+        public Character Get (int id)
+            {
+                var character = GetById(id);
+                return (character != null) ? CloneCharacter(character) : null;
+            }
 
-        public Character GetAll ()
-        {
-            
-        }
+        private Character GetById ( int id )
+            {
+                foreach (var character in _characterRoster)
+                {
+                    if (character?.Id == id)                 
+                        return character;
+                };
+                return null;
+            }
 
-        public Character Update ()
-        {
-
-        }
+        public string Update ( int id, Character character )
+            {
+                var existing = GetById(id);
+                if (existing == null)
+                    return "Character not found";
+                CopyCharacter(existing, character);
+                return "";
+            }
 
         private Character CloneCharacter ( Character character )
-        {
-            var item = new Character();
-            item.Id = character.Id;
-            item.CharacterName = character.CharacterName;
-            item.Attributes = character.Attributes;
-            item.Description = character.Description;
-            item.Profession = character.Profession;
-            item.Race = character.Race;
-            return item;
-        }
+            {
+                var item = new Character();
+                CopyCharacter(item, character);
+                return item;
+            }
+
+        private void CopyCharacter ( Character target, Character source )
+            {
+                target.CharacterName = source.CharacterName;
+                target.Profession = source.Profession;
+                target.Race = source.Race;
+                target.Description = source.Description;
+                target.Attributes = source.Attributes;
+            }
+
         private Character[] _characterRoster = new Character[100]; 
         private int _id = 1;
 
