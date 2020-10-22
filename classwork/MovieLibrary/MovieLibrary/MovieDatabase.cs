@@ -4,40 +4,40 @@ using System.Text;
 
 namespace MovieLibrary
 {
-    public class MovieDatabase
+    public class MovieDatabase : IMovieDatabase
     {
         //Default constructor to seed database
         public MovieDatabase ()
         {
             //Collection initializer syntax
             //var items = new Movie[] {
-                //new Movie() {
-                    //Name = "Jaws",
-                    //ReleaseYear = 1977,
-                    //RunLength = 190,
-                    //Description = "Shark movie",
-                    //IsClassic = true,
-                    //Rating = "PG",  // Can have a comma at end
-                //},
-                //new Movie() {
-                    //Name = "Jaws 2",
-                    //ReleaseYear = 1979,
-                    //RunLength = 195,
-                    //Description = "Shark movie",
-                    //IsClassic = true,
-                    //Rating = "PG-13",
-                //},
-                //new Movie() {
-                    //Name = "Dune",
-                    //ReleaseYear = 1985,
-                    //RunLength = 220,
-                    //Description = "Based on book",
-                    //IsClassic = true,
-                    //Rating = "PG",
-                //}
+            //new Movie() {
+            //Name = "Jaws",
+            //ReleaseYear = 1977,
+            //RunLength = 190,
+            //Description = "Shark movie",
+            //IsClassic = true,
+            //Rating = "PG",  // Can have a comma at end
+            //},
+            //new Movie() {
+            //Name = "Jaws 2",
+            //ReleaseYear = 1979,
+            //RunLength = 195,
+            //Description = "Shark movie",
+            //IsClassic = true,
+            //Rating = "PG-13",
+            //},
+            //new Movie() {
+            //Name = "Dune",
+            //ReleaseYear = 1985,
+            //RunLength = 220,
+            //Description = "Based on book",
+            //IsClassic = true,
+            //Rating = "PG",
+            //}
             //};
             //foreach (var item in items)
-                //Add(item, out var error);
+            //Add(item, out var error);
             //Not needed here - clears all items from list
             //_movies.Clear();
 
@@ -131,17 +131,23 @@ namespace MovieLibrary
             //};
         }
 
-        public Movie[] GetAll ()
-        { 
+        //Use IEnumerable<T> for readonly lists of items
+        //public Movie[] GetAll ()
+        public IEnumerable<Movie> GetAll ()
+        {
             //TODO: Determine how many movies we're storing
             //For each one create a cloned copy
             //return _movies;
-            var items = new Movie[_movies.Count];
-            var index = 0;
-            foreach (var movie in _movies)
-                items[index++] = CloneMovie(movie);
+            //var items = new Movie[_movies.Count];
+            //var index = 0;
 
-            return items;
+            //iterator IEnumerable<T>
+            //  yield return T
+            foreach (var movie in _movies) // relies on IEnumerator<T>
+                //items[index++] = CloneMovie(movie);
+                yield return CloneMovie(movie);
+
+            //return items;
         }
 
 
