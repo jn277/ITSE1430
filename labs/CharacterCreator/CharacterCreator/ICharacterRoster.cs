@@ -34,30 +34,33 @@ namespace CharacterCreator
                 item.Id = _id++;
                 //_characterRoster.Add(item);
                 character.Id = item.Id;
+
                 return character;
             }
 
         public void Delete (int id)
             {
                 var character = GetById(id);
-                if (character != null)
+                if (character == null)
                 {
-                    //Must use the same instance that is stored in the list so ref equality works
                     _characterRoster.Remove(character);
                 };
             }
 
         public Character[] GetAll ()
             {
-                var items = new Character[_characterRoster.Count];
+                var items = new Character[_characterRoster.Count()];
                 var index = 0;
-                foreach (var movie in _characterRoster)
+            Character character = null;
+            foreach (var movie in _characterRoster)
                     items[index++] = CloneCharacter(character);
+
                 return items;
             }
         public Character Get (int id)
             {
                 var character = GetById(id);
+
                 return (character != null) ? CloneCharacter(character) : null;
             }
 
@@ -65,7 +68,8 @@ namespace CharacterCreator
             {
                 foreach (var character in _characterRoster)
                 {
-                    if (character?.Id == id)                 
+                    if (character?.Id == id)
+                    
                         return character;
                 };
                 return null;
@@ -77,6 +81,7 @@ namespace CharacterCreator
                 if (existing == null)
                     return "Character not found";
                 CopyCharacter(existing, character);
+
                 return "";
             }
 
@@ -84,6 +89,7 @@ namespace CharacterCreator
             {
                 var item = new Character();
                 CopyCharacter(item, character);
+
                 return item;
             }
 
@@ -96,8 +102,10 @@ namespace CharacterCreator
                 target.Attributes = source.Attributes;
             }
 
-        private Character[] _characterRoster = new Character[100]; 
+        private List<Character> _characterRoster = new List<Character>();
         private int _id = 1;
+
+        Character character1 = new Character("");
 
     }
 }
