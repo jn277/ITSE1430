@@ -24,7 +24,7 @@ namespace MovieLibrary
     /// A paragraph of information.
     /// Another set of information.
     /// </remarks>
-    public class Movie
+    public class Movie : IValidatableObject
     {
         //Data - data to store
 
@@ -186,6 +186,10 @@ namespace MovieLibrary
         {
             return Name;
         }
+    }
+
+    public class IValidatableObject
+    {
     }
 
     // Accessibility - the visibility of an identifier to other code, compile time only, determines who can see what at compilation
