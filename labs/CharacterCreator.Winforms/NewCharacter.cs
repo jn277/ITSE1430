@@ -49,6 +49,7 @@ namespace CharacterCreator.Winforms
                 _txtDescription.Text = NewCharacter.Description;
                 _lstCharacters = NewCharacter.CharacterRoster;
             };
+            ValidateChildren();
         }
         private void OnCancel ( object sender, EventArgs e )
         {
@@ -56,7 +57,29 @@ namespace CharacterCreator.Winforms
         }
         private void OnSave ( object sender, EventArgs e )
         {
+            if (!ValidateChildren())
+            {
+                DialogResult = DialogResult.None;
+                return;
+            };
 
+            var button = sender as Button;
+            if (button == null)
+                return;
+
+            NewCharacter.CharacterName = _txtCharacterName.Text;
+            NewCharacter.Profession = _comboProfession.SelectedText;
+            NewCharacter.Race = _comboRace.SelectedText;
+            NewCharacter.Attributes = _txtAttributes.Text;
+            NewCharacter.Description = _txtDescription.Text;
+          
+            var error = character.Validate();
+            if (!String.IsNullOrEmpty(error))
+            {
+                //MessageBox.Show(this, error, "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult = DialogResult.None;
+                return;
+            };
         }
 
         private static void Validate ( object sender, CancelEventArgs e, bool error )

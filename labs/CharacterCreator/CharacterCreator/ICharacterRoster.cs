@@ -34,6 +34,7 @@ namespace CharacterCreator
                 item.Id = _id++;
                 //_characterRoster.Add(item);
                 character.Id = item.Id;
+                _characterRoster.Add(character);
 
                 return character;
             }
@@ -105,7 +106,8 @@ namespace CharacterCreator
         private List<Character> _characterRoster = new List<Character>();
         private int _id = 1;
 
-        Character character1 = new Character("");
+        
+        //Character character1 = new Character();
 
     }
 }
