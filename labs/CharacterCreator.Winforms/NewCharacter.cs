@@ -1,7 +1,7 @@
 ﻿/*
  * ITSE 1430
  * Donald Helaire
- * Lab2
+ * Lab3
  */
 using System;
 using System.Collections.Generic;
@@ -32,7 +32,6 @@ namespace CharacterCreator.Winforms
 
         public NewCharacter ( NewCharacter character ) : this()
         {
-            
         }
 
         public NewCharacter character { get; set; }
@@ -49,7 +48,8 @@ namespace CharacterCreator.Winforms
                 _txtDescription.Text = NewCharacter.Description;
                 _lstCharacters = NewCharacter.CharacterRoster;
             };
-            ValidateChildren();
+
+        ValidateChildren ();
         }
         private void OnCancel ( object sender, EventArgs e )
         {
@@ -81,7 +81,6 @@ namespace CharacterCreator.Winforms
                 return;
             };
         }
-
         private static void Validate ( object sender, CancelEventArgs e, bool error )
         {
             var control = sender as TextBox;
@@ -94,7 +93,6 @@ namespace CharacterCreator.Winforms
                 var dialogResult = MessageBox.Show("Save Failed");
             }
         }
-
-     }
+    }
  }
     

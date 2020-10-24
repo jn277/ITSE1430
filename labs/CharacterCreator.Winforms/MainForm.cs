@@ -1,7 +1,7 @@
 ﻿/*
  * ITSE 1430
  * Donald Helaire
- * Lab2
+ * Lab3
  */
 
 using System;
@@ -45,11 +45,9 @@ namespace CharacterCreator.Winforms
             //MessageBox.Show("About closed");
             //Close();
         }
-
         private void _miCharacterNew_Click ( object sender, EventArgs e )
         {
             var form = new NewCharacter();
-
             var result = form.ShowDialog(this);
             if (result == DialogResult.OK)
                 return;
