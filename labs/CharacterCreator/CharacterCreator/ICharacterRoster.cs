@@ -32,7 +32,6 @@ namespace CharacterCreator
             error = "";
             var item = CloneCharacter(character);
             item.Id = _id++;
-            //_characterRoster.Add(item);
             character.Id = item.Id;
             _characterRoster.Add(character);
 
@@ -61,7 +60,6 @@ namespace CharacterCreator
         public Character Get ( int id )
         {
             var character = GetById(id);
-
             return (character != null) ? CloneCharacter(character) : null;
         }
 
@@ -70,7 +68,6 @@ namespace CharacterCreator
             foreach (var character in _characterRoster)
             {
                 if (character?.Id == id)
-
                     return character;
             };
             return null;
@@ -106,7 +103,8 @@ namespace CharacterCreator
         private List<Character> _characterRoster = new List<Character>();
         private int _id = 1;
 
-        public Character _CharName = new Character(); 
+        //public Character _CharName = new Character();
+        public ICharacterRoster Delete ();
         
         public Character _Prof = new Character();
 

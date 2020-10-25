@@ -19,7 +19,6 @@ namespace CharacterCreator.Winforms
     public partial class MainForm : Form
     {
         private string _lstCharacterName;
-
         public MainForm()
         {
             InitializeComponent();
@@ -37,18 +36,16 @@ namespace CharacterCreator.Winforms
         private void _miHelpAoout_Click ( object sender, EventArgs e )
         {
             var form = new _about();
-
             var result = form.ShowDialog(this);
+
             if (result == DialogResult.OK)
                 return;
-            //else
-            //MessageBox.Show("About closed");
-            //Close();
         }
         private void _miCharacterNew_Click ( object sender, EventArgs e )
         {
             var form = new NewCharacter();
             var result = form.ShowDialog(this);
+
             if (result == DialogResult.OK)
                 return;
             else
@@ -58,8 +55,8 @@ namespace CharacterCreator.Winforms
         private void _miCharacterEdit_Click ( object sender, EventArgs e )
         {
             var form = new NewCharacter();
-
             var result = form.ShowDialog(this);
+
             if (result == DialogResult.OK)
                 return;
             else
@@ -69,12 +66,13 @@ namespace CharacterCreator.Winforms
         private void _miCharacterDelete_Click ( object sender, EventArgs e )
         {
             var form = new NewCharacter();
-
             var result = form.ShowDialog(this);
+
+            MessageBox.Show("Do you want to delete this character?,", _lstCharacterName);
             if (result == DialogResult.OK)
+                //public void Delete ( int id );
                 return;
             else
-                MessageBox.Show("Do you want to delete this character?,", _lstCharacterName);
             Close();
         }
     }
