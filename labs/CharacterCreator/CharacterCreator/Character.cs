@@ -9,9 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CharacterCreator
 {
-    public class Character
+    public class Character : IValidatableObject
     {
         private string _characterName;      //The name of the character.
         private string _characterRoster;    //The name of the character in roster.
@@ -75,5 +76,9 @@ namespace CharacterCreator
                 return "Description is required";
             return null;
         }
+        public class IValidatableObject
+        {
+        };
+
     }
 }

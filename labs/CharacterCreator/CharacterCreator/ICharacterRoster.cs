@@ -103,8 +103,7 @@ namespace CharacterCreator
         private List<Character> _characterRoster = new List<Character>();
         private int _id = 1;
 
-        //public Character _CharName = new Character();
-        public ICharacterRoster Delete ();
+        public Character _CharName = new Character();
         
         public Character _Prof = new Character();
 

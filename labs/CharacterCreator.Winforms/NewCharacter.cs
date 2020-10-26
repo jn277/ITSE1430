@@ -74,7 +74,7 @@ namespace CharacterCreator.Winforms
             NewCharacter.Description = _txtDescription.Text;
           
             var error = character.Validate();
-            if (!String.IsNullOrEmpty(error))
+            //if (!String.IsNullOrEmpty(error))
             {
                 //MessageBox.Show(this, error, "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
