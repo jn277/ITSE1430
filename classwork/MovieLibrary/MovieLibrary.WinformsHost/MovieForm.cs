@@ -6,6 +6,7 @@
 
 using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
 
 namespace MovieLibrary.WinformsHost
@@ -125,18 +126,28 @@ namespace MovieLibrary.WinformsHost
             //movie.Age = 10;
 
             //TODO: Fix validation
-            var error = movie.Validate();
-            if (!String.IsNullOrEmpty(error))
+
+            //Validate
+            var validationResults = new ObjectValidator().TryValidateFullObject(movie);
+            if (validationResults.Count() > 0)
             {
-                //Show error message - use for standard messages
-                MessageBox.Show(this, error, "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //TODO: Fix this later using String.Join
+                var builder = new System.Text.StringBuilder();
+                foreach (var result in validationResults)
+                {
+                    builder.AppendLine(result.ErrorMessage);
+                };
+
+                //Show error message
+                MessageBox.Show(this, builder.ToString(), "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
                 return;
-            };
-
+            }; 
+            
             // Return movie
             Movie = movie;
-            Close();
+                Close();
+            }
         }
 
         private void OnValidateName ( object sender, CancelEventArgs e )
