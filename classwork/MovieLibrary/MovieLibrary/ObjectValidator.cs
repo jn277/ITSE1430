@@ -1,10 +1,16 @@
-﻿using System;
+﻿/*
+ * ITSE 1430
+ * Donald Helaire
+ * Classwork
+ */
+
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieLibrary
 {
-   public class ObjectValidator
+    public class ObjectValidator
     {
         public IEnumerable<ValidationResult> TryValidateFullObject ( IValidatableObject value )
         {

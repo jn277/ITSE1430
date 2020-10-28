@@ -5,8 +5,10 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MovieLibrary.WinformsHost
@@ -68,7 +70,7 @@ namespace MovieLibrary.WinformsHost
                 _txtName.Text = Movie.Name;
                 _txtDescription.Text = Movie.Description;
                 _comboRating.SelectedText = Movie.Rating;
-                _chkIsClassic.Checked = Movie.IsClassic;
+                _chkClassic.Checked = Movie.IsClassic;
                 _txtRunLength.Text = Movie.RunLength.ToString();
                 _txtReleaseYear.Text = Movie.ReleaseYear.ToString();
             };
@@ -110,7 +112,7 @@ namespace MovieLibrary.WinformsHost
             movie.Name = _txtName.Text;
             movie.Description = _txtDescription.Text;
             movie.Rating = _comboRating.SelectedText;
-            movie.IsClassic = _chkIsClassic.Checked;
+            movie.IsClassic = _chkClassic.Checked;
 
             movie.RunLength = ReadAsInt32(_txtRunLength);  //this.ReadAsInt32
             movie.ReleaseYear = ReadAsInt32(_txtReleaseYear);
@@ -125,9 +127,7 @@ namespace MovieLibrary.WinformsHost
             //Won't compile
             //movie.Age = 10;
 
-            //TODO: Fix validation
-
-            //Validate
+            //TODO: Fix type validate
             var validationResults = new ObjectValidator().TryValidateFullObject(movie);
             if (validationResults.Count() > 0)
             {
@@ -142,12 +142,11 @@ namespace MovieLibrary.WinformsHost
                 MessageBox.Show(this, builder.ToString(), "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
                 return;
-            }; 
-            
+            };
+
             // Return movie
             Movie = movie;
-                Close();
-            }
+            Close();
         }
 
         private void OnValidateName ( object sender, CancelEventArgs e )

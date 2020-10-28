@@ -5,18 +5,10 @@
  */
 
 using System;    //DO NOT DELETE
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
-//Hierarchical namesapces
-//namespace MovieLibrary
-//{
-//    namespace WinformsHost
-//    {
-//    }
-//}
-//namespace Company.Product.<area>
-//namespace Microsoft.Office.Word
-//namespace Microsoft.Office.Excel
 
 namespace MovieLibrary.WinformsHost
 {
@@ -150,8 +142,10 @@ namespace MovieLibrary.WinformsHost
 
         private void RefreshUI ()
         {
-            _lstMovies.DataSource = _movies.GetAll().ToArray();
-            // _lstMovies.DataSource = null;
+            _lstMovies.DataSource  = _movies.GetAll().ToArray();
+            //_lstMovies.DataSource = null;
+            //_lstMovies.DataSource = _movies.GetAll();
+
             //_lstMovies.DisplayMember = nameof(Movie.Name); //"Name"            
         }
 
