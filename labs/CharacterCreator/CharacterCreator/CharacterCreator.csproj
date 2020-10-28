@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Character.cs" />
     <Compile Include="ICharacterRoster.cs" />
+    <Compile Include="ObjectValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿/*
  * ITSE 1430
  * Donald Helaire
- * Lab3
+ * Lab2
  */
 using System;
 using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace CharacterCreator.Winforms
         {
         }
 
-        public NewCharacter character { get; set; }
+        public virtual NewCharacter character { get; set; }
         protected override void OnLoad ( EventArgs e )
         {       
             base.OnLoad(e);
@@ -72,27 +72,106 @@ namespace CharacterCreator.Winforms
             NewCharacter.Race = _comboRace.SelectedText;
             NewCharacter.Attributes = _txtAttributes.Text;
             NewCharacter.Description = _txtDescription.Text;
-          
-            var error = character.Validate();
-            //if (!String.IsNullOrEmpty(error))
+
+            var validationResults = new ObjectValidator().TryValidateFullObject(movie);
+            if (validationResults.Count() > 0)
             {
-                //MessageBox.Show(this, error, "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //TODO: Fix this later using String.Join
+                var builder = new System.Text.StringBuilder();
+                foreach (var result in validationResults)
+                {
+                    builder.AppendLine(result.ErrorMessage);
+                };
+
+                //Show error message
+                MessageBox.Show(this, builder.ToString(), "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
                 return;
             };
+            Close();
         }
-        private static void Validate ( object sender, CancelEventArgs e, bool error )
+        private void OnValidateCharacterName ( object sender, CancelEventArgs e )
         {
             var control = sender as TextBox;
+
+            //Name is required
             if (String.IsNullOrEmpty(control.Text))
             {
-                error.ToString();
-                e.Cancel=true;
+                //Set error using ErrorProvider
+                _errors.SetError(control, "Name is required");
+                e.Cancel = true;  //Not validate
             } else
-            { 
-                var dialogResult = MessageBox.Show("Save Failed");
-            }
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
+        }
+
+        private void OnValidateProfession ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+
+            //Name is required
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                //Set error using ErrorProvider
+                _errors.SetError(control, "Profession is required");
+                e.Cancel = true;  //Not validate
+            } else
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
+        }
+        private void OnValidateRace ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+
+            //Name is required
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                //Set error using ErrorProvider
+                _errors.SetError(control, "Race is required");
+                e.Cancel = true;  //Not validate
+            } else
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
+        }
+        private void OnValidateAttributes ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+
+            //Name is required
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                //Set error using ErrorProvider
+                _errors.SetError(control, "Attribute is required");
+                e.Cancel = true;  //Not validate
+            } else
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
+        }
+
+        private void OnValidateDescription ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+
+            //Name is required
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                //Set error using ErrorProvider
+                _errors.SetError(control, "Description is required");
+                e.Cancel = true;  //Not validate
+            } else
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
         }
     }
- }
+}
     
