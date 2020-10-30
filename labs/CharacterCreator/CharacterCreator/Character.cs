@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
-    public class Character : IValidatableObject
+    public class IValidatableObject
     {
         private string _characterName;      //The name of the character.
         private string _characterRoster;    //The name of the character in roster.
@@ -57,6 +57,7 @@ namespace CharacterCreator
 
         public string Validate ()
         {
+             
             if (String.IsNullOrEmpty(_characterName)) 
                 return "Name is required";
 
@@ -76,9 +77,6 @@ namespace CharacterCreator
                 return "Description is required";
             return null;
         }
-        public class IValidatableObject
-        {
-        };
-
+       
     }
 }

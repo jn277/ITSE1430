@@ -13,165 +13,182 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CharacterCreator.Winforms
-{
-    public partial class NewCharacter : Form
+
+    namespace CharacterCreator.Winforms
     {
-        private static string CharacterName;
-        private static string Profession;
-        private static string Race;
-        private static string Attributes;
-        private static string Description;
-        private static string CharacterRoster;
-        private object _lstCharacters;
-
-        public NewCharacter ()
+        public partial class NewCharacter : Form
         {
-            InitializeComponent();
-        }
+            private static string CharacterName;
+            private static string Profession;
+            private static string Race;
+            private static string Attributes;
+            private static string Description;
+            private static string CharacterRoster;
+            private object _lstCharacters;
 
-        public NewCharacter ( NewCharacter character ) : this()
-        {
-        }
-
-        public virtual NewCharacter character { get; set; }
-        protected override void OnLoad ( EventArgs e )
-        {       
-            base.OnLoad(e);
-
-            if (character!= null)
+            public NewCharacter ()
             {
-                _txtCharacterName.Text = NewCharacter.CharacterName;
-                _comboProfession.SelectedText = NewCharacter.Profession;
-                _comboRace.SelectedText = NewCharacter.Race;
-                _txtAttributes.Text = NewCharacter.Attributes;
-                _txtDescription.Text = NewCharacter.Description;
-                _lstCharacters = NewCharacter.CharacterRoster;
-            };
+                InitializeComponent();
+            }
 
-        ValidateChildren ();
-        }
-        private void OnCancel ( object sender, EventArgs e )
-        {
-            Close();
-        }
-        private void OnSave ( object sender, EventArgs e )
-        {
-            if (!ValidateChildren())
+            public NewCharacter ( NewCharacter character ) : this()
             {
-                DialogResult = DialogResult.None;
-                return;
-            };
+            }
 
-            var button = sender as Button;
-            if (button == null)
-                return;
-
-            NewCharacter.CharacterName = _txtCharacterName.Text;
-            NewCharacter.Profession = _comboProfession.SelectedText;
-            NewCharacter.Race = _comboRace.SelectedText;
-            NewCharacter.Attributes = _txtAttributes.Text;
-            NewCharacter.Description = _txtDescription.Text;
-
-            var validationResults = new ObjectValidator().TryValidateFullObject(movie);
-            if (validationResults.Count() > 0)
+            public virtual NewCharacter character { get; set; }
+            protected override void OnLoad ( EventArgs e )
             {
-                //TODO: Fix this later using String.Join
-                var builder = new System.Text.StringBuilder();
-                foreach (var result in validationResults)
+                base.OnLoad(e);
+
+                if (character!= null)
                 {
-                    builder.AppendLine(result.ErrorMessage);
+                    _txtCharacterName.Text = NewCharacter.CharacterName;
+                    _comboProfession.SelectedText = NewCharacter.Profession;
+                    _comboRace.SelectedText = NewCharacter.Race;
+                    _txtAttributes.Text = NewCharacter.Attributes;
+                    _txtDescription.Text = NewCharacter.Description;
+                    _lstCharacters = NewCharacter.CharacterRoster;
                 };
 
-                //Show error message
-                MessageBox.Show(this, builder.ToString(), "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DialogResult = DialogResult.None;
-                return;
-            };
-            Close();
-        }
-        private void OnValidateCharacterName ( object sender, CancelEventArgs e )
+                ValidateChildren();
+            }
+            private void OnCancel ( object sender, EventArgs e )
+            {
+                Close();
+            }
+            private void OnSave ( object sender, EventArgs e )
+            {
+                if (!ValidateChildren())
+                {
+                    DialogResult = DialogResult.None;
+                    return;
+                };
+
+                var button = sender as Button;
+                if (button == null)
+                    return;
+
+                NewCharacter.CharacterName = _txtCharacterName.Text;
+                NewCharacter.Profession = _comboProfession.SelectedText;
+                NewCharacter.Race = _comboRace.SelectedText;
+                NewCharacter.Attributes = _txtAttributes.Text;
+                NewCharacter.Description = _txtDescription.Text;
+
+                
+                var character = new NewCharacter.TryValidateFullObject(this.character);
+                if (character.Count() > 0)
+                {
+                    var builder = new System.Text.StringBuilder();
+                    foreach (var result in NewCharacter.CharacterRoster)
+                    {
+                        builder.AppendLine(result.ToString());
+                    };
+
+                    MessageBox.Show(this, builder.ToString(), "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DialogResult = DialogResult.None;
+                    return;
+                };
+                Close();
+            }
+            private void OnValidateCharacterName ( object sender, CancelEventArgs e )
+            {
+                var control = sender as TextBox;
+
+                if (String.IsNullOrEmpty(control.Text))
+                {
+                _errors.Equals(control, "Name is required");
+                    e.Cancel = true;  
+                } else
+                {
+                    _errors.Equals(control, "");
+                };
+            }
+
+            private void OnValidateProfession ( object sender, CancelEventArgs e )
+            {
+                var control = sender as TextBox;
+
+                if (String.IsNullOrEmpty(control.Text))
+                {
+                    _errors.Equals(control, "Profession is required");
+                    e.Cancel = true; 
+                } else
+                {
+                    _errors.Equals(control, "");
+                };
+            }
+            private void OnValidateRace ( object sender, CancelEventArgs e )
+            {
+                var control = sender as TextBox;
+
+                if (String.IsNullOrEmpty(control.Text))
+                {
+                    _errors.Equals(control, "Race is required");
+                    e.Cancel = true; 
+                } else
+                {
+                    _errors.Equals(control, "");
+                };
+            }
+            private void OnValidateAttributes ( object sender, CancelEventArgs e )
+            {
+                var control = sender as TextBox;
+
+                if (String.IsNullOrEmpty(control.Text))
+                {
+                    _errors.Equals(control, "Attribute is required");
+                    e.Cancel = true; 
+                } else
+                {
+                    _errors.Equals(control, "");
+                };
+            }
+
+            private void OnValidateDescription ( object sender, CancelEventArgs e )
+            {
+                var control = sender as TextBox;
+
+                if (String.IsNullOrEmpty(control.Text))
+                {
+                    _errors.Equals(control, "Description is required");
+                    e.Cancel = true; 
+                } else
+                {
+                    _errors.Equals(control, "");
+                };
+            }
+
+        private class TryValidateFullObject
         {
-            var control = sender as TextBox;
+            private NewCharacter character;
 
-            //Name is required
-            if (String.IsNullOrEmpty(control.Text))
+            public TryValidateFullObject ( NewCharacter character )
             {
-                //Set error using ErrorProvider
-                _errors.SetError(control, "Name is required");
-                e.Cancel = true;  //Not validate
-            } else
+                this.character=character;
+            }
+
+            internal int Count ()
             {
-                //Clear error from provider
-                _errors.SetError(control, "");
-            };
+                throw new NotImplementedException();
+            }
+        }
+    }
+
+    internal class _errors
+    {
+    }
+
+    internal class ObjectValidator
+    {
+        public ObjectValidator ()
+        {
         }
 
-        private void OnValidateProfession ( object sender, CancelEventArgs e )
+        internal object TryValidateFullObject ( NewCharacter character )
         {
-            var control = sender as TextBox;
-
-            //Name is required
-            if (String.IsNullOrEmpty(control.Text))
-            {
-                //Set error using ErrorProvider
-                _errors.SetError(control, "Profession is required");
-                e.Cancel = true;  //Not validate
-            } else
-            {
-                //Clear error from provider
-                _errors.SetError(control, "");
-            };
-        }
-        private void OnValidateRace ( object sender, CancelEventArgs e )
-        {
-            var control = sender as TextBox;
-
-            //Name is required
-            if (String.IsNullOrEmpty(control.Text))
-            {
-                //Set error using ErrorProvider
-                _errors.SetError(control, "Race is required");
-                e.Cancel = true;  //Not validate
-            } else
-            {
-                //Clear error from provider
-                _errors.SetError(control, "");
-            };
-        }
-        private void OnValidateAttributes ( object sender, CancelEventArgs e )
-        {
-            var control = sender as TextBox;
-
-            //Name is required
-            if (String.IsNullOrEmpty(control.Text))
-            {
-                //Set error using ErrorProvider
-                _errors.SetError(control, "Attribute is required");
-                e.Cancel = true;  //Not validate
-            } else
-            {
-                //Clear error from provider
-                _errors.SetError(control, "");
-            };
-        }
-
-        private void OnValidateDescription ( object sender, CancelEventArgs e )
-        {
-            var control = sender as TextBox;
-
-            //Name is required
-            if (String.IsNullOrEmpty(control.Text))
-            {
-                //Set error using ErrorProvider
-                _errors.SetError(control, "Description is required");
-                e.Cancel = true;  //Not validate
-            } else
-            {
-                //Clear error from provider
-                _errors.SetError(control, "");
-            };
+            throw new NotImplementedException();
         }
     }
 }
+
     

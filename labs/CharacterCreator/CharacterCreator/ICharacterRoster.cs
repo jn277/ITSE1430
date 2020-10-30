@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
-    public class ICharacterRoster
+    public class ICharacterRoster: IValidatableObject
     {
-        public ICharacterRoster ()
+        public ICharacterRoster()
         {
-            var character = new Character() {
+            var character = new IValidatableObject() {
                 CharacterName = "",
                 Profession = "",
                 Race = "",
@@ -26,16 +26,23 @@ namespace CharacterCreator
             Add(character, out var error);
         }
 
+        private void Add ( IValidatableObject character, out string error )
+        {
+            throw new NotImplementedException();
+        }
 
-        public Character Add ( Character character, out string error )
+        public ICharacterRoster Add ( ICharacterRoster character, out string error )
         {
             error = "";
             var item = CloneCharacter(character);
-            item.Id = _id++;
-            character.Id = item.Id;
-            _characterRoster.Add(character);
+            character.Id = _id++;
 
             return character;
+        }
+
+        private object CloneCharacter ( ICharacterRoster character )
+        {
+            throw new NotImplementedException();
         }
 
         public void Delete ( int id )
@@ -47,23 +54,23 @@ namespace CharacterCreator
             };
         }
 
-        public Character[] GetAll ()
+        public ICharacterRoster[] GetAll ()
         {
-            var items = new Character[_characterRoster.Count()];
+            var items = new ICharacterRoster[_characterRoster.Count()];
             var index = 0;
-            Character character = null;
-            foreach (var movie in _characterRoster)
-                items[index++] = CloneCharacter(character);
+
+            foreach (var character in _characterRoster)
+                items[index++] = _characterRoster.Add(items);
 
             return items;
         }
-        public Character Get ( int id )
+        public ICharacterRoster Get ( int id )
         {
             var character = GetById(id);
-            return (character != null) ? CloneCharacter(character) : null;
+            return (ICharacterRoster)((character != null) ? CloneCharacter(character) : null);
         }
 
-        private Character GetById ( int id )
+        private ICharacterRoster GetById ( int id )
         {
             foreach (var character in _characterRoster)
             {
@@ -73,7 +80,7 @@ namespace CharacterCreator
             return null;
         }
 
-        public string Update ( int id, Character character )
+        public string Update ( int id, ICharacterRoster character )
         {
             var existing = GetById(id);
             if (existing == null)
@@ -83,15 +90,7 @@ namespace CharacterCreator
             return "";
         }
 
-        private Character CloneCharacter ( Character character )
-        {
-            var item = new Character();
-            CopyCharacter(item, character);
-
-            return item;
-        }
-
-        private void CopyCharacter ( Character target, Character source )
+        private void CopyCharacter ( ICharacterRoster target, ICharacterRoster source )
         {
             target.CharacterName = source.CharacterName;
             target.Profession = source.Profession;
@@ -100,17 +99,17 @@ namespace CharacterCreator
             target.Attributes = source.Attributes;
         }
 
-        private List<Character> _characterRoster = new List<Character>();
+        private List<ICharacterRoster> _characterRoster = new List<ICharacterRoster>();
         private int _id = 1;
 
-        public Character _CharName = new Character();
+        public ICharacterRoster _CharName = new ICharacterRoster();
         
-        public Character _Prof = new Character();
+        public ICharacterRoster _Prof = new ICharacterRoster();
 
-        public Character _Race = new Character();
+        public ICharacterRoster _Race = new ICharacterRoster();
 
-        public Character _Descrip = new Character();
+        public ICharacterRoster _Descrip = new ICharacterRoster();
 
-        public Character _Attrib = new Character(); 
+        public ICharacterRoster _Attrib = new ICharacterRoster(); 
     }
 }
