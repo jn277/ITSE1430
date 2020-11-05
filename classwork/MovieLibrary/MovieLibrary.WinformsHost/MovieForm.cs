@@ -70,7 +70,7 @@ namespace MovieLibrary.WinformsHost
                 _txtName.Text = Movie.Name;
                 _txtDescription.Text = Movie.Description;
                 _comboRating.SelectedText = Movie.Rating;
-                _chkClassic.Checked = Movie.IsClassic;
+                _chkIsClassic.Checked = Movie.IsClassic;
                 _txtRunLength.Text = Movie.RunLength.ToString();
                 _txtReleaseYear.Text = Movie.ReleaseYear.ToString();
             };
@@ -112,14 +112,14 @@ namespace MovieLibrary.WinformsHost
             movie.Name = _txtName.Text;
             movie.Description = _txtDescription.Text;
             movie.Rating = _comboRating.SelectedText;
-            movie.IsClassic = _chkClassic.Checked;
+            movie.IsClassic = _chkIsClassic.Checked;
 
             movie.RunLength = ReadAsInt32(_txtRunLength);  //this.ReadAsInt32
             movie.ReleaseYear = ReadAsInt32(_txtReleaseYear);
 
             //Using a constant
             //  1. Type name, not instance
-            var nameLength = Movie.MaximumNameLength; //50
+            //var nameLength = Movie.MaximumNameLength; //50
             //var nameLength1 = 50;
 
             var descriptionLength = movie.MaximumDescriptionLength;
@@ -127,8 +127,9 @@ namespace MovieLibrary.WinformsHost
             //Won't compile
             //movie.Age = 10;
 
+            //ObjectValidator.ValidateFullObject(movie);
             //TODO: Fix type validate
-            var validationResults = new ObjectValidator().TryValidateFullObject(movie);
+            var validationResults = ObjectValidator.TryValidateFullObject(movie);
             if (validationResults.Count() > 0)
             {
                 //TODO: Fix this later using String.Join
@@ -273,10 +274,11 @@ namespace MovieLibrary.WinformsHost
             //   4. null reference types
 
             //int x = null;
-            string s = null;
+            //string s = null;
         }
     }
 }
+
 
 
 //namespace OtherNamespace

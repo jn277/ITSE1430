@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * ITSE 1430
+ * Donald Helaire
+ * Classwork
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +12,7 @@ namespace MovieLibrary
 {
     public class SeedMovieDatabase
     {
-        public void Seed ( IMovieDatabase database )
+        public static void Seed ( IMovieDatabase database )
         {
             //Not needed here - clears all items from list
             //_movies.Clear();
@@ -41,7 +47,7 @@ namespace MovieLibrary
 
             //TODO: Fix error handling
             foreach (var item in items)
-                database.Add(item, out var error);
+                database.Add(item);
 
             #region Unused code
             //Seed database
