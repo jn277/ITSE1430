@@ -4,17 +4,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <Company>Donald Helaire</Company>
+    <Company>Your Name</Company>
     <Product>Movie Library</Product>
-    <Authors>Donald Helaire</Authors>
+    <Authors>Your Name</Authors>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MovieLibrary.Sql\MovieLibrary.Sql.csproj" />
     <ProjectReference Include="..\MovieLibrary\MovieLibrary.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="MovieForm.cs" />
   </ItemGroup>
 
 </Project>

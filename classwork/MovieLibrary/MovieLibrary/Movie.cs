@@ -21,14 +21,13 @@ namespace MovieLibrary
 
     // doctags
 
-
     // Static vs instance members
     //   Instance members are tied to the instance they are called on
-    //      Fields - data in the instance       (_id, _name)
-    //      Methods - requires an instance to execute (instance.method()) (ToString)
+    //      Fields - data in the instance       (instance._id, instance._name)
+    //      Methods - requires an instance to execute (instance.method()) (instanc.eToString())
     //   Static members are global to all instances
     //      Fields - equivalent to global variable  
-    //      Method - equivalent to a global function, does not have instance access, does not have a this parameter  (
+    //      Method - equivalent to a global function, does not have instance access, does not have a this parameter  (Int32.TryParse)
 
     /// <summary>Represents a movie.</summary>
     /// <remarks>
@@ -193,7 +192,7 @@ namespace MovieLibrary
         //    return null;
         //}
 
-        public override string ToString ()
+        public override string ToString ( /* this */ )  //instance.ToString()
         {
             return Name;
         }

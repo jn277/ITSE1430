@@ -44,7 +44,6 @@ namespace MovieLibrary.IO
             return movie;
         }
 
-        //public void Delete ( int id )
         protected override void DeleteCore ( int id )
         {
             //Streaming approach
@@ -140,13 +139,14 @@ namespace MovieLibrary.IO
             //SaveMovies(movies);
         }
 
-        //public IEnumerable<Movie> GetAll ()
+        /// <inheritdoc />
         protected override IEnumerable<Movie> GetAllCore ()
         {
             if (File.Exists(_filename))
             {
                 // Read file buffered as an array
-                var lines = File.ReadAllLines(_filename);
+                string[] lines = File.ReadAllLines(_filename);
+                //string rawText = File.ReadAllText(_filename);
 
                 foreach (var line in lines)
                 {
@@ -157,13 +157,10 @@ namespace MovieLibrary.IO
             };
         }
 
-        //public Movie Get ( int id )
+        /// <inheritdoc />
         protected override Movie GetByIdCore ( int id )
         {
-            var movie = FindById(id);
-
-            //Clone movie if we found it
-            return (movie != null) ? CloneMovie(movie) : null;
+            return FindById(id);
         }
 
         /// <inheritdoc />
@@ -172,6 +169,7 @@ namespace MovieLibrary.IO
             var movies = GetAllCore();
             foreach (var movie in movies)
             {
+                //Static method                
                 if (String.Compare(movie.Name, name, true) == 0)
                     return movie;
             };
@@ -179,14 +177,14 @@ namespace MovieLibrary.IO
             return null;
         }
 
-        //public string Update ( int id, Movie movie )
+        /// <inheritdoc />
         protected override void UpdateCore ( int id, Movie movie )
         {
             //Remove old movie
             var items = new List<Movie>(GetAllCore());
             foreach (var item in items)
             {
-               //Use item not movie
+                //Use item not movie
                 if (item.Id == id)
                 {
                     //Must use item here, not movie
@@ -200,32 +198,10 @@ namespace MovieLibrary.IO
             items.Add(movie);
 
             SaveMovies(items);
-            
         }
-
-       // private Movie CloneMovie ( Movie movie )
-        //{
-            //var item = new Movie();
-            //item.Id = movie.Id;
-
-            //CopyMovie(item, movie);
-
-            //return item;
-       // }
-
-        //private void CopyMovie ( Movie target, Movie source )
-        //{
-            //target.Name = source.Name;
-            //target.Rating = source.Rating;
-            //target.ReleaseYear = source.ReleaseYear;
-            //target.RunLength = source.RunLength;
-            //target.IsClassic = source.IsClassic;
-            //target.Description = source.Description;
-        //}
 
         private Movie FindById ( int id )
         {
-
             //Streaming approach
             Stream stream = File.OpenRead(_filename);   //Opens a file for reading
 
@@ -237,29 +213,40 @@ namespace MovieLibrary.IO
                 //Stream = series of data (binary = byte, text = character)
                 //   May be read, write or seek (CanRead, CanWrite, CanSeek)
                 //stream.Read() Low level
+
+                //Use reader/writer for working with streams, provides a cleaner API
                 StreamReader reader = new StreamReader(stream);  //Reads text streams
-                                                             //BinaryReader reader;
+                                                                 //BinaryReader reader;  //For binary files
 
-            //Keep reading until end of stream or find movie
-            while (!reader.EndOfStream)
-            {
-                var line = reader.ReadLine();
+                //Keep reading until end of stream or find movie
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
 
-                var movie = LoadMovie(line);
-                if (movie?.Id == id)
-                    return movie;
-            };
+                    var movie = LoadMovie(line);
+                    if (movie?.Id == id)
+                        return movie;
+                };
 
-            return null;
-                //Not exception safe
+                //Not exception safe - won't be called if an exception occurs
                 //stream.Close();
-                //Catch blocks here
-            } finally
+
+                return null;
+            }  //Catch blocks here, if needed
+            finally
             {
                 //Exception safe
                 //Guaranteed to be called whether code completes or not
                 stream.Close();
             };
+
+            //Buffered approach
+            //var movies = GetAllCore();
+            //foreach (var movie in movies)
+            //{
+            //    if (movie?.Id == id)
+            //        return movie;
+            //};
         }
 
         private Movie LoadMovie ( string line )
@@ -289,6 +276,7 @@ namespace MovieLibrary.IO
         {
             return "\"" + value + "\"";
         }
+
         private string RemoveQuotes ( string value )
         {
             return value.Trim('"');
@@ -303,6 +291,7 @@ namespace MovieLibrary.IO
 
             File.WriteAllLines(_filename, lines);
         }
+
         private string SaveMovie ( Movie movie )
         {
             //NOTE: No commas in string values
@@ -320,9 +309,6 @@ namespace MovieLibrary.IO
 
             return builder.ToString();
         }
-
-        private List<Movie> _movies = new List<Movie>();  //Generic list of Movies, use for fields
-        private int _id = 1;
 
         // File class - used to manage files
         //    Copy
