@@ -77,7 +77,7 @@ namespace MovieLibrary.WinformsHost
 
         private void OnHelpAbout ( object sender, EventArgs e )
         {
-            var about = new AboutBox();
+            var about = new _About();
 
             about.ShowDialog(this);
         }
