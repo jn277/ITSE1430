@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace MovieLibrary.WinformsHost
 {
-    partial class _About : Form
+    partial class AboutBox : Form
     {
-        public _About ()
+        public AboutBox ()
         {
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
