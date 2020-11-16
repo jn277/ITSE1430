@@ -1,7 +1,7 @@
 ﻿/*
  * ITSE 1430
  * Donald Helaire
- * Classwork
+ * Lab4
  */
 
 using System;
@@ -10,12 +10,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MovieLibrary
 {
-    //Static class
-    //  1. Cannot be instantiated
-    //  2. Cannot contain instance members
     public static class ObjectValidator
     {
-        //Make static because it doesn't use any instance data
         public static IEnumerable<ValidationResult> TryValidateFullObject ( IValidatableObject value )
         {
             var validationResults = new List<ValidationResult>();

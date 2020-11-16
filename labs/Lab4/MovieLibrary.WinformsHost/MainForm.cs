@@ -4,7 +4,7 @@
  * Lab4
  */
 
-using System;    //DO NOT DELETE
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
