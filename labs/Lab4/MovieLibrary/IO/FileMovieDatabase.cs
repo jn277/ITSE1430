@@ -1,7 +1,7 @@
 ﻿/*
  * ITSE 1430
  * Donald Helaire
- * Classwork
+ * Lab4
  */
 
 using System;

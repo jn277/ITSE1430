@@ -18,12 +18,14 @@ namespace MovieLibrary.WinformsHost
         public AboutBox ()
         {
             InitializeComponent();
-            this.Text = String.Format("About {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-            //this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            //this.textBoxDescription.Text = AssemblyDescription;
+            //this.Text = String.Format("About {0}", AssemblyTitle);
+            this.Text = "About";
+            //this.labelProductName.Text = AssemblyProduct;
+            this.labelProductName.Text = "ITSE 1430";
+            //this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            this.labelVersion.Text = "Fall 2020";
+            //this.labelCompanyName.Text = AssemblyCompany;
+            this.labelCompanyName.Text = "Donald Helaire";
         }
 
         #region Assembly Attribute Accessors
