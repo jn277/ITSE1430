@@ -8,11 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CharacterCreator
+namespace MovieLibrary
 {
-    class ObjectValidator
+    public static class ObjectValidator
     {
-        public IEnumerable<ValidationResult> TryValidateFullObject ( IValidatableObject value )
+        public static IEnumerable<ValidationResult> TryValidateFullObject ( IValidatableObject value )
         {
             var validationResults = new List<ValidationResult>();
             Validator.TryValidateObject(value, new ValidationContext(value), validationResults, true);
@@ -20,5 +20,9 @@ namespace CharacterCreator
             return validationResults;
         }
 
+        public static void ValidateFullObject ( IValidatableObject value )
+        {
+            Validator.ValidateObject(value, new ValidationContext(value), true);
+        }
     }
 }

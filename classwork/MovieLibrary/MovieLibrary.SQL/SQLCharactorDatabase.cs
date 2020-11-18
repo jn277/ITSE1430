@@ -1,7 +1,7 @@
 ﻿/*
  * ITSE 1430
  * Donald Helaire
- * Classwork
+ * Lab4
  */
 
 using System;
@@ -11,16 +11,13 @@ using System.Linq;
 
 namespace MovieLibrary.Sql
 {
-    /// <summary>Provides an implementation of <see cref="IMovieDatabase"/> using a SQL Server database.</summary>
-    public class SqlMovieDatabase : MovieDatabase
+    public class SQLCharactorDatabase : CharacterDatabase
     {
-        public SqlMovieDatabase ( string connectionString )
+        public SQLCharactorDatabase ( string connectionString )
         {
-            //Should probably validate this...
             _connectionString = connectionString;
         }
 
-        //Make readonly as it is only set in constructor
         private readonly string _connectionString;
 
         /// <inheritdoc />
@@ -38,7 +35,6 @@ namespace MovieLibrary.Sql
         /// <inheritdoc />
         protected override IEnumerable<Movie> GetAllCore ()
         {
-            //Connect to database using connection string
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -46,8 +42,6 @@ namespace MovieLibrary.Sql
 
             return Enumerable.Empty<Movie>();
         }
-
-        //public Movie Get ( int id )
         protected override Movie GetByIdCore ( int id )
         {
             throw new NotImplementedException();
@@ -58,8 +52,6 @@ namespace MovieLibrary.Sql
         {
             throw new NotImplementedException();
         }
-
-        //public string Update ( int id, Movie movie )
         protected override void UpdateCore ( int id, Movie movie )
         {
             throw new NotImplementedException();

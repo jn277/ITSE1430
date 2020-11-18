@@ -14,7 +14,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using CharacterCreator.Winforms;
+using CharacterCreator.WinformsHost;
+
 namespace CharacterCreator.Winforms
 {
     public partial class MainForm : Form

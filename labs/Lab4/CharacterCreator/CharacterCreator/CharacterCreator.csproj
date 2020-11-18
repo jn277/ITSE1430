@@ -49,7 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CharacterCreator.Winforms\CharacterCreator.Winforms.csproj">
+    <ProjectReference Include="..\..\..\CharacterCreator.Winforms\CharacterCreator.Winforms.csproj">
       <Project>{1cad7c82-e8f0-46f4-a7f3-a1f05a51398a}</Project>
       <Name>CharacterCreator.Winforms</Name>
     </ProjectReference>

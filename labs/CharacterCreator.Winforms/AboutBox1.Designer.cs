@@ -1,4 +1,4 @@
-﻿namespace MovieLibrary.WinformsHost
+﻿namespace CharacterCreator.WinformsHost
 {
     partial class AboutBox1
     {

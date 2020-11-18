@@ -11,7 +11,9 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace MovieLibrary.WinformsHost
+using CharacterCreator.WinformsHost;
+
+namespace CharacterCreator.WinformsHost
 {
     partial class AboutBox1 : Form
     {

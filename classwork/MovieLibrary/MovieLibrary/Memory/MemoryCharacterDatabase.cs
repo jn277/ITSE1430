@@ -9,8 +9,8 @@ using System.Collections.Generic;
 
 namespace MovieLibrary.Memory
 {
-    /// <summary>Provides an implementation of <see cref="IMovieDatabase"/> using an in-memory list.</summary>
-    public class MemoryMovieDatabase : MovieDatabase
+    /// <summary>Provides an implementation of <see cref="ICharacterDatabase"/> using an in-memory list.</summary>
+    public class MemoryCharacterDatabase : CharacterDatabase
     {
         //public Movie Add ( Movie movie, out string error )
         /// <inheritdoc />

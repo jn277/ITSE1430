@@ -10,10 +10,10 @@ using System.IO;
 
 namespace MovieLibrary.IO
 {
-    /// <summary>Provides an implementation of <see cref="IMovieDatabase"/> using a file.</summary>
-    public class FileMovieDatabase : MovieDatabase
+    /// <summary>Provides an implementation of <see cref="ICharacterDatabase"/> using a file.</summary>
+    public class FileCharacterDatabase : CharacterDatabase
     {
-        public FileMovieDatabase ( string filename )
+        public FileCharacterDatabase ( string filename )
         {
             _filename = filename;
         }

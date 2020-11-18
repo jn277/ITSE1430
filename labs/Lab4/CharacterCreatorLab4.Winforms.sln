@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterCreator.Winforms", "..\CharacterCreator.Winforms\CharacterCreator.Winforms.csproj", "{1CAD7C82-E8F0-46F4-A7F3-A1F05A51398A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterCreator", "..\CharacterCreator\CharacterCreator\CharacterCreator.csproj", "{C8D111C8-4ADE-47A8-9488-2276BD0BE00B}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CharacterDb", "CharacterDb\CharacterDb.sqlproj", "{BDE72751-B36A-499E-81E4-7FB8951B67F5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CharacterCreator.SQL", "CharacterCreator.SQL\CharacterCreator.SQL.csproj", "{5E74E027-812B-4124-AC4E-9A2B0E83E9EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterCreator", "CharacterCreator\CharacterCreator\CharacterCreator.csproj", "{C8D111C8-4ADE-47A8-9488-2276BD0BE00B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +21,16 @@ Global
 		{1CAD7C82-E8F0-46F4-A7F3-A1F05A51398A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CAD7C82-E8F0-46F4-A7F3-A1F05A51398A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CAD7C82-E8F0-46F4-A7F3-A1F05A51398A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDE72751-B36A-499E-81E4-7FB8951B67F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE72751-B36A-499E-81E4-7FB8951B67F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE72751-B36A-499E-81E4-7FB8951B67F5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BDE72751-B36A-499E-81E4-7FB8951B67F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE72751-B36A-499E-81E4-7FB8951B67F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDE72751-B36A-499E-81E4-7FB8951B67F5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5E74E027-812B-4124-AC4E-9A2B0E83E9EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E74E027-812B-4124-AC4E-9A2B0E83E9EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E74E027-812B-4124-AC4E-9A2B0E83E9EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E74E027-812B-4124-AC4E-9A2B0E83E9EC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8D111C8-4ADE-47A8-9488-2276BD0BE00B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8D111C8-4ADE-47A8-9488-2276BD0BE00B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8D111C8-4ADE-47A8-9488-2276BD0BE00B}.Release|Any CPU.ActiveCfg = Release|Any CPU
