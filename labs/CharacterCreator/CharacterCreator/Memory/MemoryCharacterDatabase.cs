@@ -6,90 +6,111 @@
 
 using System;
 using System.Collections.Generic;
+using CharacterCreator.Memory;
 
 namespace CharacterCreator.Memory
 {
     public class MemoryCharacterDatabase : CharacterDatabase
     {
-        protected override Movie AddCore ( Movie movie )
+        protected  MemoryCharacterDatabase AddCore ( MemoryCharacterDatabase memoryCharacter )
         {
-            var item = CloneMovie(movie);
+            var item = CloneMovie(memoryCharacter);
 
-            item.Id = _id++;
+            memoryCharacter._id = _id++;
 
-            _movies.Add(item);
+            memoryCharacter.Add((ICharacterDatabase)item);
 
-            movie.Id = item.Id;
-            return movie;
+            memoryCharacter.Id = memoryCharacter.Id;
+            return memoryCharacter;
+        }
+
+        private object CloneMovie ( object memoryCharacter )
+        {
+            throw new NotImplementedException();
         }
 
         protected override void DeleteCore ( int id )
         {
-            var movie = FindById(id);
-            if (movie != null)
+            var memoryCharacter = FindById(id);
+            if (memoryCharacter != null)
             {
-                _movies.Remove(movie);
+                memoryCharacter.Equals(memoryCharacter);
             };
 
         }
-        protected override IEnumerable<Movie> GetAllCore ()
+        protected override IEnumerable<ICharacterDatabase> GetAllCore ()
         {
-            foreach (var movie in _movies)   
-                yield return CloneMovie(movie);
-        protected override Movie GetByIdCore ( int id )
-        {
-            var movie = FindById(id);
-
-            return (movie != null) ? CloneMovie(movie) : null;
+            foreach (var memoryCharacter in Character)
+                yield return (ICharacterDatabase)CloneMovie(memoryCharacter);
         }
-        protected override Movie GetByName ( string name )
+        protected override ICharacterDatabase GetByIdCore ( int id )
         {
-            foreach (var movie in _movies)
+            var memoryCharacter = FindById(id);
+
+            return (memoryCharacter != null) ? (ICharacterDatabase)CloneMovie(memoryCharacter) : null;
+        }
+        protected override ICharacterDatabase GetByName ( string name )
+        {
+            foreach (var memoryCharacter in Character)
             {
-                if (String.Compare(movie.Name, name, true) == 0)
-                    return CloneMovie(movie);
-            };
-
-            return null;
-        }
-        protected override void UpdateCore ( int id, Movie movie )
-        {
-            var existing = FindById(id);
-
-            CopyMovie(existing, movie);
-
-        private Movie CloneMovie ( Movie movie )
-        {
-            var item = new Movie();
-            item.Id = movie.Id;
-
-            CopyMovie(item, movie);
-
-            return item;
-        }
-
-        private void CopyMovie ( Movie target, Movie source )
-        {
-            target.Name = source.Name;
-            target.Rating = source.Rating;
-            target.ReleaseYear = source.ReleaseYear;
-            target.RunLength = source.RunLength;
-            target.IsClassic = source.IsClassic;
-            target.Description = source.Description;
-        }
-
-        private Movie FindById ( int id )
-        {
-            foreach (var movie in _movies)
-            {
-                if (movie?.Id == id)                 
-                    return movie;
+                //if (String.Compare(Character.Equals(), true) != 0)
+                    //continue;
+                return (ICharacterDatabase)CloneMovie(memoryCharacter: memoryCharacter);
             };
 
             return null;
         }
+        //protected void UpdateCore ( int id, ICharacterDatabase memoryCharacter )
+        //{
+            //var existing = FindById(id);
+        //}
 
-        private List<Movie> _movies = new List<Movie>(); 
+        ICharacterDatabase CloneMovie ( ICharacterRoster memoryCharacter )
+        {
+            var item = new ICharacterRoster();
+            item.Id = memoryCharacter.Id;
+
+            CopyMovie(item, memoryCharacter);
+
+            return item.Add(item);
+        }
+        private void CopyMovie ( ICharacterRoster target, ICharacterRoster source )
+        {
+            target._CharName = source._CharName;
+            target._Attrib = source._Attrib;
+            target._Descrip = source._Descrip;
+            target._Prof = source._Prof;
+            target._Race = source._Race;
+        }
+        private ICharacterRoster FindById ( int id )
+        {
+            foreach (var memoryCharacter in Character)
+            {
+                //if ((ICharacterRoster)Character.Equals() == id)                 
+                    return (ICharacterRoster)Character;
+            };
+
+            return null;
+        }
+
+        protected override ICharacterDatabase AddCore ( ICharacterDatabase character )
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ICharacterDatabase UpdateCore ( int id, ICharacterDatabase character )
+        {
+            throw new NotImplementedException();
+        }
+
+        private List<ICharacterDatabase> _movies = new List<ICharacterDatabase>(); 
         private int _id = 1;
+        private object Id;
+        private IEnumerable<object> Character;
+        private object memoryCharacter;
+
+        private class existing
+        {
+        }
     }
 }

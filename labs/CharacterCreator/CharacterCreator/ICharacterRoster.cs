@@ -60,7 +60,7 @@ namespace CharacterCreator
             var index = 0;
 
             foreach (var character in _characterRoster)
-                items[index++] = _characterRoster.Add(items);
+                items[index++] = character;
 
             return items;
         }
@@ -88,6 +88,11 @@ namespace CharacterCreator
             CopyCharacter(existing, character);
 
             return "";
+        }
+
+        internal ICharacterDatabase Add ( ICharacterRoster item )
+        {
+            throw new NotImplementedException();
         }
 
         private void CopyCharacter ( ICharacterRoster target, ICharacterRoster source )

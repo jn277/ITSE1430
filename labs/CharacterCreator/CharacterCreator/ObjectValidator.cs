@@ -6,7 +6,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+
+using CharacterCreator;
 
 namespace MovieLibrary
 {
@@ -15,7 +16,7 @@ namespace MovieLibrary
         public static IEnumerable<ValidationResult> TryValidateFullObject ( IValidatableObject value )
         {
             var validationResults = new List<ValidationResult>();
-            Validator.TryValidateObject(value, new ValidationContext(value), validationResults, true);
+            object p = Validator.TryValidateObject(value, new ValidationContext(value), validationResults, true);
 
             return validationResults;
         }
@@ -24,5 +25,32 @@ namespace MovieLibrary
         {
             Validator.ValidateObject(value, new ValidationContext(value), true);
         }
+    }
+
+    internal class ValidationContext
+    {
+        private IValidatableObject value;
+
+        public ValidationContext ( IValidatableObject value )
+        {
+            this.value=value;
+        }
+    }
+
+    internal class Validator
+    {
+        internal static object TryValidateObject ( IValidatableObject value, ValidationContext validationContext, List<ValidationResult> validationResults, bool v )
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void ValidateObject ( IValidatableObject value, ValidationContext validationContext, bool v )
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ValidationResult
+    {
     }
 }

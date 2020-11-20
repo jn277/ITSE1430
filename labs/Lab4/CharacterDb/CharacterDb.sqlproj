@@ -60,12 +60,11 @@
     <Folder Include="Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\Movies.sql" />
-    <Build Include="Stored Procedures\AddMovie.sql" />
-    <Build Include="Stored Procedures\UpdateMovie.sql" />
-    <Build Include="Stored Procedures\DeleteMovie.sql" />
+    <Build Include="Tables\Characters.sql" />
+    <Build Include="Stored Procedures\AddCharacter.sql" />
+    <Build Include="Stored Procedures\UpdateCharacter.sql" />
+    <Build Include="Stored Procedures\DeleteCharacter.sql" />
     <Build Include="Stored Procedures\FindByName.sql" />
-    <Build Include="Stored Procedures\GetMovie.sql" />
-    <Build Include="Stored Procedures\GetMovies.sql" />
+    <Build Include="Stored Procedures\GetCharacter.sql" />
   </ItemGroup>
 </Project>
