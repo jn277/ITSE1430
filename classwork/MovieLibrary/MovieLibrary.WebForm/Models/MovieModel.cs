@@ -1,9 +1,8 @@
 ﻿/*
  * ITSE 1430
  * Donald Helaire
- * Lab4
+ * Classwork
  */
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +11,34 @@ namespace MovieLibrary.WebHost.Models
 {
     public class MovieModel // : IValidatableObject
     {
+        public MovieModel ()
+        { }
+
+        public MovieModel ( Movie movie )
+        {
+            //Transform from business object to model
+            Id = movie.Id;
+            Name = movie.Name;
+            Description = movie.Description;
+            Rating = movie.Rating;
+            RunLength = movie.RunLength;
+            ReleaseYear = movie.ReleaseYear;
+            IsClassic = movie.IsClassic;
+        }
+
+        public Movie ToMovie ()
+        {
+            return new Movie() {
+                Id = Id,
+                Name = Name,
+                Description = Description,
+                Rating = Rating,
+                RunLength = RunLength,
+                ReleaseYear = ReleaseYear,
+                IsClassic = IsClassic,
+            };
+        }
+
         //Metadata - data about data
 
         public int Id { get; set; }
@@ -42,6 +69,7 @@ namespace MovieLibrary.WebHost.Models
         public bool IsClassic { get; set; }
     }
 }
+
 
 
 
