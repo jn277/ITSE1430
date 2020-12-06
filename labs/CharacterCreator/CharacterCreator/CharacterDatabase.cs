@@ -92,34 +92,26 @@ namespace CharacterCreator
                 throw new InvalidOperationException("Update Failed", e);
             };
         }
-
         protected abstract ICharacterDatabase AddCore ( ICharacterDatabase character );
-
         protected abstract void DeleteCore ( int id );
-
         protected abstract IEnumerable<ICharacterDatabase> GetAllCore ();
-
         protected abstract ICharacterDatabase GetByIdCore ( int id );
         protected virtual ICharacterDatabase GetByName ( string name )
         {
-            foreach (var movie in GetAll())
+            foreach (var character in GetAll())
             {
-                if (String.Compare(movie.Name, name, true) == 0)
-                    return movie;
+                if (String.Compare(character.Name, name, true) == 0)
+                    return character;
             };
 
             return null;
         }
-
         protected abstract ICharacterDatabase UpdateCore ( int id, ICharacterDatabase character );
-
-        //private void CopyMovie ( existing, memoryCharacter);
         private string GetByName ()
         {
             throw new NotImplementedException();
         }
     }
-
     internal class ObjectValidator
     {
         internal static void ValidateFullObject ( ICharacterDatabase character )

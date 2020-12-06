@@ -12,6 +12,10 @@ namespace CharacterRoster.Web.Models
 {
     public class CharacterModel
     {
+        public CharacterModel ( object character )
+        {
+        }
+
         public int Id { get; set; }
 
         [Required(AllowEmptyStrings = false)]
@@ -21,5 +25,10 @@ namespace CharacterRoster.Web.Models
         public string Race { get; set; }
         public int Attributes { get; set; }
         public string Description { get; set; }
+
+        internal object ToCharacter ()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
