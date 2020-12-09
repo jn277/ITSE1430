@@ -12,6 +12,10 @@ namespace CharacterRoster.Web.Models
 {
     public class CharacterModel
     {
+        public CharacterModel ()
+        {
+        }
+
         public CharacterModel ( object character )
         {
         }
@@ -27,6 +31,11 @@ namespace CharacterRoster.Web.Models
         public string Description { get; set; }
 
         internal object ToCharacter ()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal object ToMovie ()
         {
             throw new NotImplementedException();
         }

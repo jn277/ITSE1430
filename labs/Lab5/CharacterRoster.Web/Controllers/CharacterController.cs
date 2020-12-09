@@ -22,18 +22,14 @@ namespace CharacterRoster.Web.Controllers
 
         public CharacterController ()
         {
-            //Gets the CharacterDatabase connection string from the config file
             var connString = ConfigurationManager.ConnectionStrings["CharacterDatabase"].ConnectionString;
 
             var _database = new MemoryCharacterDatabase(connString);
         }
-
-        // GET: Character
         public ActionResult Index()
         {
             var character = _database.GetAll();
 
-            //IEnumerable<MovieModel> model = 
             //var model = character.Select(x => new CharacterModel(x));
             var model = character;
 
@@ -67,10 +63,65 @@ namespace CharacterRoster.Web.Controllers
 
             return View(model);
         }
-    }
+        public ActionResult Create () => View(new CharacterModel());
 
+        [HttpPost]
+        public ActionResult Create ( CharacterModel model )
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var character = _database.Add(model.ToCharacter());
+
+                    return RedirectToAction(nameof(Details), new { id = model.Id });
+                } catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                };
+            };
+
+            return View(model);
+        }
+
+        public ActionResult Delete ( int id )
+        {
+            var character = _database.Get(id);
+            if (character == null)
+                return HttpNotFound();
+
+            return View(new CharacterModel(character));
+        }
+
+        [HttpPost]
+        public ActionResult Delete ( CharacterModel character )
+        {
+            try
+            {
+                _database.Delete(character.Id);
+
+                return RedirectToAction(nameof(Index));
+            } catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+            };
+
+            return View(character);
+        }
+
+    }
     internal class _database
     {
+        internal static object Add ( object v )
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void Delete ( int id )
+        {
+            throw new NotImplementedException();
+        }
+
         internal static object Get ( object id )
         {
             throw new NotImplementedException();
