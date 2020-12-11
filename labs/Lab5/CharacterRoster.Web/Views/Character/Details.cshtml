@@ -1,13 +1,12 @@
 ﻿@model CharacterRoster.Web.Models.CharacterModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.CharacterName;
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
-    <h4>CharacterModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,19 +18,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterRoster)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterRoster)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Profession)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Profession)
+            @Html.DisplayFor(model => model.Description)
         </dd>
 
         <dt>
@@ -43,19 +34,18 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Attributes)
+            @Html.DisplayNameFor(model => model.Profession)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Attributes)
+            @Html.DisplayFor(model => model.Profession)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Attributes)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Attributes)
         </dd>
 
     </dl>
@@ -64,3 +54,4 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
